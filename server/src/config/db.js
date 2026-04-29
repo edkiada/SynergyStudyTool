@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const logger = require('../utils/logger')
 const config = require('./env')
 
 mongoose.set('strictQuery', false)
@@ -6,9 +7,9 @@ mongoose.set('strictQuery', false)
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(config.MONGODB_URI)
-    console.log(`✅ MongoDB 連線成功: ${conn.connection.host}`);
+    logger.info(`✅ MongoDB 連線成功`)
   } catch(error) {
-    console.log('wrong')
+    next(error)
   }
 }
 
