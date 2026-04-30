@@ -99,3 +99,99 @@
   }
 - **Response**
   - `204 ok`
+
+### 1.6 查詢任務筆記
+- **Endpoint**: `GET /tasks/:id/notes`
+- **Description**: 查詢任務筆記筆記
+- **Response**
+  - `200 ok`
+  ```json
+  [
+    {
+    "title": "GIT_CODE紀錄",
+    "id": "65f1a...",
+    "content": "docs:是更改文件的git commit代號",
+    "source": {
+      "type": "task",
+      "refId": "662f...",
+      "onModel": "Task"
+      } 
+    }
+  ]
+
+
+## 2. 筆記模組 (notes)
+
+### 2.1 獲取所有筆記(獨立)
+- **Endpoint**: `GET /notes`
+- **Description**: 取得所有的筆記(獨立)。
+- **Response**
+  - `200 ok`
+  ```json
+  {
+  "title": "GIT_CODE紀錄",
+  "id": "65f1a...",
+  "content": "docs:是更改文件的git commit代號",
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    } 
+  }
+
+### 2.2 建立新筆記
+- **Endpoint**: `POST /notes`
+- **Description**: 新增筆記
+- **Body**
+  ```json
+  {
+  "title": "字串 (必填)",
+  "content": "選填",
+  "source": {
+    "type": "task(選填)",
+    "refId": "662f...",
+    "onModel": "Task"
+    } 
+  }
+- **Response**
+  - `201 Created`
+  ```json
+  {
+  "title": "GIT_CODE紀錄",
+  "id": "65f1a...",
+  "content": "docs:是更改文件的git commit代號",
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    } 
+  }
+
+### 2.3 更新筆記
+- **Endpoint** `PUT /notes/:id`
+- **Description**: 編輯筆記
+- **body**
+  ```json
+  {
+    "title": "字串(選填)",
+    "content": "字串(選填)",
+  }
+- **Response**
+  - `200 ok`
+  ```json
+  {
+  "title": "GIT_CODE紀錄",
+  "id": "65f1a...",
+  "content": "docs:是更改文件的git commit代號",
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    } 
+  }
+
+### 2.4 刪除筆記
+- **Endpoint** `DELETE /notes/:id`
+- **Description**: 刪除筆記
+- **Response**
+  - `204 ok`
