@@ -1,6 +1,12 @@
-PUT http://localhost:3001/api/tasks/69f1550d147b7b4441cfb58a
+PUT http://localhost:3001/api/notes/69f304897014d01160dd734a
 Content-Type: application/json
 
 {
-  "status": "completed"
+  "title": "test",
+  "content": "that was test",
+  "source": {
+    "type": "task",
+    "refid": "fuck",
+    
+  }
 }

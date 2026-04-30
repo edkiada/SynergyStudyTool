@@ -1,6 +1,12 @@
-POST http://localhost:3001/api/tasks
+POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-  "title": "resolve problem"
+  "title": "resolve problem",
+  "content": "that is test",
+  "source": {
+    "type": "task",
+    "refId": "69f1772cc39175a62c1ae4ad",
+    "onModel": "Task"
+  }
 }
