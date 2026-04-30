@@ -22,9 +22,8 @@ const taskSchema = new mongoose.Schema({
     default: 0, // 單位：秒
     min: [0, '專注時間不可為負數']
   },
-  createdAt: {
+  completedAt: {
     type: Date,
-    default: Date.now
   },
   notes: [
     {
@@ -39,6 +38,16 @@ taskSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
+  }
+})
+
+taskSchema.pre('save', async function() {
+  if(this.isModified('status')) {
+    if(this.status === 'completed') {
+      this.completedAt = Date.now()
+    } else {
+      this.completedAt = null;
+    }
   }
 })
 

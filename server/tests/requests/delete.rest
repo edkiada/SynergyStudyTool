@@ -1,2 +1,2 @@
-DELETE http://localhost:3001/api/notes/69f305b2a57ea10c7da56f40
+DELETE http://localhost:3001/api/tasks/69f1772cc39175a62c1ae4ad
 Content-Type: application/json

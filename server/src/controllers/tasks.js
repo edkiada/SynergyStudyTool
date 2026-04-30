@@ -29,16 +29,14 @@ const updateTask = async (req, res, next) => {
     const task_id = req.params.id
     const updateData = req.body
 
-    const updatedTask = await Task.findByIdAndUpdate(
-      task_id,
-      { $set: updateData },
-      { new: true, runValidators: true }
-    )
-
-    if (!updatedTask) {
+    const task = await Task.findById(task_id)
+    if(!task) {
       return res.status(404).json({ error: "not find task" })
     }
-    res.json(updatedTask)
+    Object.assign(task, updateData)
+
+    await task.save()
+    res.json(task)
   } catch(error) {
     next(error)
   }
