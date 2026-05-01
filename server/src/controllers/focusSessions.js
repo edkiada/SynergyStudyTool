@@ -23,3 +23,7 @@ const createFocusSession = async (req, res, next) => {
     next(error)
   }
 }
+
+module.exports = {
+  createFocusSession
+}

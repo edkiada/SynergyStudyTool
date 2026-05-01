@@ -3,5 +3,5 @@ Content-Type: application/json
 
 {
   "title": "test",
-  "status": "pending"
+  "status": "completed"
 }

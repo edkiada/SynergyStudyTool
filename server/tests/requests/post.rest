@@ -1,6 +1,12 @@
-POST http://localhost:3001/api/tasks
+POST http://localhost:3001/api/focusSession
 Content-Type: application/json
 
 {
-  "title": "resolve problem"
+  "startTime": "2026-05-01T10:30:00Z",
+  "duration": 40,
+  "source": {
+    "type": "task",
+    "refId": "69f34f223547eb4cf32ab856",
+    "onModel": "Task"
+  }
 }
