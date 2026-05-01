@@ -195,3 +195,77 @@
 - **Description**: 刪除筆記
 - **Response**
   - `204 ok`
+
+## 3. 蕃茄鐘模組 (focusSession)
+
+### 3.1 取得專注紀錄
+- **Endpoint**: `GET /focusSession?type=independent`
+- **Description**: 取得專注紀錄。
+- **Response**
+  - `200 ok`
+  ```json
+  {
+  "startTime": "2026-05-01T08:00:00Z",
+  "duration": 25,
+  "id": "65f1a...",
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    } 
+  }
+
+### 3.2 建立專注紀錄
+- **Endpoint**: `POST /focusSession`
+- **Description**: 新增專注紀錄
+- **Body**
+  ```json
+  {  
+  "startTime": "2026-05-01T08:00:00Z",
+  "duration": 25,           
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    }   
+  }
+- **Response**
+  - `201 Created`
+  ```json
+  {
+  "startTime": "2026-05-01T08:00:00Z",
+  "duration": 25,  
+  "id": "65f1a...",         
+  "source": {
+    "type": "independent",
+    "refId": null,
+    "onModel": null
+    }
+  }
+
+### 4. Analytics mode
+
+## 4.1 Get Analytics
+- **Endpoint**: `GET /analytics?period=daily`
+- **Description**: `get the analytics`
+- **Query Parameters**: `period: daily(default) or weekly`
+- **Response**: 
+  - `200 ok`
+  ```json
+  {
+    "period": "daily",
+    "range": {
+      "start": "2026-05-01T00:00:00Z",
+      "end": "2026-05-01T23:59:59Z"
+    },
+    "summary": {
+      "totalFocusMinutes": 125,   
+      "completedTaskCount": 3     
+    },
+    "details": {
+      "completedTasks": [    
+        { "id": "1", "title": "寫完 API Spec", "pomodoros": 2 },
+        { "id": "2", "title": "複習微積分", "pomodoros": 3 }
+      ]
+    }
+  }
