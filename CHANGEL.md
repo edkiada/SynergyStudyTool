@@ -3,17 +3,18 @@
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
 
-## [0.0.4] - 2026-05-01 (蕃茄鐘和日報設計)
+## [0.0.4] - 2026-05-01 (蕃茄鐘和日報設計和UI)
 ### Added
 - 建立 `src/models/focusSession` 的 Mongoose Schema 設計。
 - 建立 `src/controllers/focusSessions` 並實現新增蕃茄鐘邏輯
 - 建立 `src/controllers/analytics` 並實現抓取相關資料並回傳以供前端顯示日報
 - 建立 `src/routes/focusRouter`
 - 建立 `src/routes/analyticsRouter`
-- 在 `docs/API_SPEC` 新增相關API邏輯 
+- 在 `docs/API_SPEC` 新增相關API邏輯
 
 ### Changed
-- 更改 `src/models/task` 之資料結構, 新增 `notes` 為其中之一子陣列綁定建立的note 
+- 更改 `src/models/task` 之資料結構, 將 `createdAt` 改成 `completedAt` 
+- 在 `src/models/task` 裡新增.pre中間件, 實現更改state至completed時自動記錄completedAt時間
 
 ---
 
