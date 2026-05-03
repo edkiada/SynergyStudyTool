@@ -1,2 +1,0 @@
-DELETE http://localhost:3001/api/tasks/69f1772cc39175a62c1ae4ad
-Content-Type: application/json

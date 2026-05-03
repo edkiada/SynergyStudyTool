@@ -1,7 +1,0 @@
-PUT http://localhost:3001/api/tasks/69f34f223547eb4cf32ab856
-Content-Type: application/json
-
-{
-  "title": "test",
-  "status": "completed"
-}
