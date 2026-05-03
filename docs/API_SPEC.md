@@ -21,7 +21,8 @@
       "priority": "high",
       "status": "pending",
       "totalFocusedTime": 1500,
-      "createdAt": "2026-04-28T..."
+      "completedAt": "2026-04-28T...",
+      "note": []
     }
   ]
 
@@ -43,7 +44,7 @@
     "priority": "high",
     "status": "pending",
     "totalFocusedTime": 1500,
-    "createdAt": "2026-04-28T.."
+    "completedAt": "2026-04-28T.."
   }
 
 ### 1.3 更新任務
@@ -65,7 +66,7 @@
     "priority": "high",
     "status": "pending",
     "totalFocusedTime": 1500,
-    "createdAt": "2026-04-28T.."
+    "completedAt": "2026-04-28T.."
   }
 
 ### 1.4 操作任務
@@ -86,7 +87,7 @@
     "priority": "high",
     "status": "completed",
     "totalFocusedTime": 1500,
-    "createdAt": "2026-04-28T.."
+    "completedAt": "2026-04-28T.."
   }
 
 ### 1.5 刪除任務
