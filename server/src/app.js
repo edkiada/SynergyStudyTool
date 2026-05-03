@@ -5,12 +5,14 @@ const tasksRouter = require('./routes/tasksRouter')
 const focusRouter = require('./routes/focusRouter')
 const analyticsRouter = require('./routes/analyticsRouter')
 const middleware = require('./middleware')
+const cors = require('cors')
 const app = express()
 
 db.connectDB()
 
 app.use(express.json())
 app.use(middleware.requestLogger)
+app.use(cors())
 
 app.use('/api/tasks', tasksRouter)
 app.use('/api/notes', notesRouter)
