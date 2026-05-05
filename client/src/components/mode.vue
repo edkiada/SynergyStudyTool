@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import index from './view/main.vue'
+
 </script>
 
 <template>
-  <index />
+  
 </template>
+
+<style scoped></style>

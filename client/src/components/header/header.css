@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.date {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  padding-bottom: 0.5rem;
+} 
+
+.date > h2 {
+  color: var(--Gray450);
+  font-weight: 500;
+}
