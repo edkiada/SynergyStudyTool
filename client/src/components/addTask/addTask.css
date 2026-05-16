@@ -4,6 +4,14 @@
   border-radius: 0;
 }
 
+#LowBtn {
+  border-radius: 0.2rem 0 0 0.2rem;
+}
+
+#HighBtn {
+  border-radius: 0 0.2rem 0.2rem 0;
+}
+
 .overlay {
   background-color: var(--white);
   position: fixed;
@@ -151,7 +159,6 @@
   border-radius: 4px;
   padding: 0;
   display: flex;
-  gap: 1px;
   justify-content: space-evenly;
 }
 
@@ -162,6 +169,18 @@
 .priorityItem {
   background-color: var(--white);
   padding: 0.2rem 0.4rem;
-  border-radius: 4px;
   font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lowPriority {
+  background-color: var(--PriorityGreen);
+}
+
+.mediumPriority {
+  background-color: var(--PriorityYellow);
+}
+
+.highPriority {
+  background-color: var(--PriorityRed);
 }
