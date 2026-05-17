@@ -22,6 +22,10 @@ const taskSchema = new mongoose.Schema({
     default: 0, // 單位：秒
     min: [0, '專注時間不可為負數']
   },
+  isSwipted: {
+    type: Boolean,
+    default: false,
+  },
   completedAt: {
     type: Date,
   },
