@@ -3,6 +3,16 @@
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
 
+## [0.0.5] - 2026-05-17 (Task頁面(前端))
+### Added
+- 建立 `client/src/components/addTask` 處理新增任務之overlay頁面
+- 建立 `client/src/components/header` 作今日日期和User入口
+- 建立 `client/src/components/navBar` 作四種子分頁之索引
+- 建立 `client/src/components/taskContent` 顯示task內容
+- 建立 `client/src/stores/taskStore.ts` 作為task頁面之API請求和狀態管理
+- 建立 task 之 fegma初稿 
+
+
 ## [0.0.4] - 2026-05-01 (蕃茄鐘和日報設計和UI)
 ### Added
 - 建立 `src/models/focusSession` 的 Mongoose Schema 設計。
