@@ -8,6 +8,7 @@
 
 .taskItem {
   display: flex;
+  position: relative;
   justify-content: space-between;
   border-bottom: 1px solid var(--Gray850);
   padding: 1rem 0;
@@ -49,6 +50,7 @@
 }
 
 .swipped {
+  transform: translateX(-40px);
   transition: 0.5s;
 }
 
@@ -63,10 +65,52 @@
 }
 
 .deleteBtn {
-  width: 100%;
-  height: 100%;
   background-color: var(--PriorityRed);
   border: 1px solid var(--Gray850);
   color: var(--white);
   padding: 0.5rem;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  outline: 1px solid red;
+}
+
+.taskLabel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.itemPriority {
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.redPriority {
+  background-color: var(--PriorityRed);
+  color: var(--PriorityRedText);
+}
+
+.greenPriority {
+  background-color: var(--PriorityGreen);
+  color: var(--PriorityGreenText);
+}
+
+.yellowPriority {
+  background-color: var(--PriorityYellow);
+  color: var(--PriorityYellowText);
+}
+
+.checkBtnCompleted {
+  background-color: var(--Gray450);
+  filter: opacity(60%);
+}
+
+.taskCompleted {
+  filter: opacity(50%);
+}
+
+.focusBtnCompleted {
+  visibility: hidden;
 }
