@@ -8,6 +8,7 @@ interface Task {
   priority: 'low' | 'medium' | 'high';
   status: 'pending' | 'completed';
   totalFocusedTime: number;
+  isSwiped: boolean;
   completedAt?: string;
   note: string[];
 }
@@ -17,12 +18,11 @@ interface NewTaskInput {
   priority: 'low' | 'medium' | 'high';
 }
 
-const API_URL = 'http://localhost:3001/api/tasks';
+const API_URL = 'http://192.168.1.177:3001/api/tasks';
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [] as Task[],
-    newTask: [] as Task[]
   }),
   actions: {
     async fetchTasks() {
@@ -41,6 +41,30 @@ export const useTaskStore = defineStore('taskStore', {
       } catch (error) {
         console.error("Failed to save task:", error);
       }
-    }   
+    },
+    async deleteTask(taskId: string) {
+      try {
+        await axios.delete(`${API_URL}/${taskId}`);
+        await this.fetchTasks(); 
+      } catch (error) {
+        console.error("Failed to delete task:", error);
+      }
+    }, 
+    async toggleTaskstatus(taskId: string, currentStatus: 'pending' | 'completed') {
+      try {
+        const newStatus = currentStatus === 'pending' ? 'completed' : 'pending';
+        
+        const task = this.tasks.find(t => t.id === taskId);
+        if(task) {
+          task.status = newStatus;
+          task.completedAt = newStatus === 'completed' ? new Date().toISOString() : undefined;
+        }
+        await axios.put(`${API_URL}/${taskId}`, { status: newStatus });
+        await this.fetchTasks();
+      } catch(error) {
+        console.error("Failed to toggle task status:", error);
+        await this.fetchTasks();
+      }
+    }
   }
 });
