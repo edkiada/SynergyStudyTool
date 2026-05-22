@@ -2,6 +2,7 @@
   import { useTaskStore } from '../../stores/taskStore';
   import { onMounted } from 'vue';
   import clock from "../../assets/icons/clock.svg"
+  import tick from "../../assets/icons/tick.svg"
   const dataStore = useTaskStore();
 
   onMounted(() => {
@@ -10,6 +11,16 @@
 
   let touchStartX = 0;
 
+  const priorityColorClass = (priority : String) => {
+    if (priority === 'high') {
+      return 'redPriority';
+    } else if (priority === 'medium') {
+      return 'yellowPriority';
+    } else {
+      return 'greenPriority';
+    }
+  }
+  
   const handleTouchStart = (event: TouchEvent) => {
     touchStartX = event.touches[0].clientX;
   }
@@ -31,19 +42,22 @@
     <div v-for="(item, index) in dataStore.tasks" :key="index" class="temp">
       <div class="taskItem" :class="{ 'swipped' : item.isSwiped }"@touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event, item)">
         <div class="task">
-          <button type="button" class="checkBtn"></button>
-          <div class="taskText">
+          <button type="button" class="checkBtn" @click="dataStore.toggleTaskstatus(item.id, item.status)" :class="{ 'checkBtnCompleted' : item.status === 'completed' }"><img :src="tick" v-if="item.status === 'completed'"></button>
+          <div class="taskText" :class="{ 'taskCompleted' : item.status === 'completed' }" >
             <p>{{ item.title }}</p>
-            <p>tag</p>
+            <div class="taskLabel">
+              <p>tag</p>
+              <p class="itemPriority" :class="priorityColorClass(item.priority)">{{ item.priority }}</p>
+            </div>
           </div>
         </div>
-        <div class="focusBtnItem">
+        <div class="focusBtnItem" :class="{ 'focusBtnCompleted' : item.status === 'completed' }" >
           <button type="button" class="focusBtn"><img :src="clock"></button>
           <p>start</p>
         </div>
-      </div>
-      <div v-if="item.isSwiped" class="deleteBtnItem">
-        <button type="button" class="deleteBtn" @touchstart.stop @click.stop="dataStore.deleteTask(item.id)">Delete</button>
+        <div v-if="item.isSwiped" class="deleteBtnItem">
+          <button type="button" class="deleteBtn" @touchstart.stop @click.stop="dataStore.deleteTask(item.id)">Delete</button>
+        </div>
       </div>
     </div>
   </section>
