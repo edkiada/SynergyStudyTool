@@ -1,5 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Manrope:wght@200..800&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Story+Script&display=swap');
+
 :root {
+  --Gray300: hsl(0, 0%, 30%);
   --Gray450: hsl(0, 0%, 44%);
+  --Gray850: hsl(0, 0%, 84%);
+  --Gray900: hsl(0, 0%, 90%);
+  --Gray950: hsl(0, 0%, 95%);
+  --lightSky: hsl(208 86.5% 49.5%);
+  --white: hsl(100, 100%, 100%);
+  --black: hsl(0, 0%, 0%);
+
+  --PriorityYellow: hsl(48, 96%, 80%);
+  --PriorityRed: hsl(0, 100%, 80%);
+  --PriorityGreen: hsl(120, 98%, 80%);
+
+  --PriorityYellowText: hsl(48, 100%, 27%);
+  --PriorityRedText: hsl(0, 100%, 27%);
+  --PriorityGreenText: hsl(120, 100%, 27%);
 }
 
 * {
@@ -10,6 +27,7 @@
 
 body {
   font-size: 16px;
-  font-family: sans-serif;
-  padding-top: 5vh;
+  font-family: inter;
+  height: 100vh;
+  overflow: hidden;
 }
