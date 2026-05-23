@@ -10,12 +10,16 @@ interface Task {
   totalFocusedTime: number;
   isSwiped: boolean;
   completedAt?: string;
+  tagText: string;
+  tagColor: string;
   note: string[];
 }
 
 interface NewTaskInput {
   title: string;
   priority: 'low' | 'medium' | 'high';
+  tagText: string;
+  tagColor: string;
 }
 
 const API_URL = 'http://192.168.1.177:3001/api/tasks';
