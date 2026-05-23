@@ -15,7 +15,9 @@ const createTask = async (req, res, next) => {
     const body = req.body
     const task = new Task({
       title: body.title,
-      priority: body.priority || "medium"
+      priority: body.priority || "medium",
+      tagText: body.tagText || "",
+      tagColor: body.tagColor || "",
     })
     const response = await task.save()
     res.status(201).json(response)
