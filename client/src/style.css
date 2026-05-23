@@ -17,6 +17,15 @@
   --PriorityYellowText: hsl(48, 100%, 27%);
   --PriorityRedText: hsl(0, 100%, 27%);
   --PriorityGreenText: hsl(120, 100%, 27%);
+
+  --tagColorRed: hsl(0, 100%, 90%);
+  --tagColorGreen: hsl(120, 100%, 90%);
+  --tagColorYellow: hsl(48, 100%, 90%);
+  --tagColorBlue: hsl(208, 100%, 90%);
+  --tagColorPurple: hsl(280, 100%, 90%);
+  --tagColorGray: hsl(0, 0%, 90%);
+  --tagColorTeal: hsl(180, 100%, 90%);
+  --tagColorOrange: hsl(30, 100%, 90%);
 }
 
 * {
