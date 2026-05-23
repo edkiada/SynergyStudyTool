@@ -10,18 +10,41 @@
   const taskStore = useTaskStore();
   const isModalOpen = ref(false);
   const ispameraterOpen = ref(false);
+  const isColorPickerOpen = ref(false);
   const isTyping = ref(false);
   const tasktitle = ref('');
+  const tagText = ref('');
   const selectedPriority = ref<'low' | 'medium' | 'high'>('medium');
+  const selectedColor = ref('--tagColorRed');
+  const themeColor = [
+    '--tagColorRed',
+    '--tagColorGreen',
+    '--tagColorYellow',
+    '--tagColorBlue',
+    '--tagColorPurple',
+    '--tagColorOrange',
+    '--tagColorTeal',
+    '--tagColorGray',
+  ]
+
 
   const selectPriority = (priority: 'low' | 'medium' | 'high') => {
     selectedPriority.value = priority;
   } 
+  const selectColor = (color: string) => {
+    selectedColor.value = color;
+    isColorPickerOpen.value = false;
+  }
+  const toggleColorPicker = () => {
+    isColorPickerOpen.value = !isColorPickerOpen.value;
+  }
+
   const handleModal = () => {
     isModalOpen.value = !isModalOpen.value;
   }
   const handlePamerater = () => {
     ispameraterOpen.value = !ispameraterOpen.value;
+    isColorPickerOpen.value = false;
   }
   const handleFocus = () => {
     isTyping.value = true; 
@@ -35,6 +58,8 @@
     taskStore.saveTask({
       title: tasktitle.value,
       priority: selectedPriority.value,
+      tagText: tagText.value,
+      tagColor: selectedColor.value,
     });
     tasktitle.value = '';
     isModalOpen.value = false;
@@ -72,11 +97,14 @@
                 <span>Tag</span>
               </div>
               <div class="tagContainer">
-                <button type="button" class="colorChoice"></button>
-                <input type="text" placeholder="Add a tag..." class="tagField"/>
+                <button type="button" class="colorChoice" @click="toggleColorPicker" :style="{ backgroundColor : `var(${selectedColor})`}"></button>
+                <input type="text" placeholder="Add a tag..." class="tagField" v-model="tagText"/>
               </div>
             </div>
             <button type="button" class="MiniSubmit Btn">Save</button>
+          </div>
+          <div class="colorPicker" v-if="isColorPickerOpen">
+            <button v-for="(color, index) in themeColor" :key="index" class="colorOption Btn" :style="{ backgroundColor: `var(${color})` }" @click="selectColor(color)"></button>
           </div>
         </div>
       </div>

@@ -184,3 +184,21 @@
 .highPriority {
   background-color: var(--PriorityRed);
 }
+
+.colorPicker {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  bottom: 360%;
+  left: 5%;
+  background-color: var(--white);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--Gray850);
+}
+
+.colorOption {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+}
