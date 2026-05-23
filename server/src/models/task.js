@@ -29,6 +29,15 @@ const taskSchema = new mongoose.Schema({
   completedAt: {
     type: Date,
   },
+  tagText: {
+    type: String,
+    trim: true,
+    maxlength: 30,
+  },
+  tagColor: {
+    type: String,
+    trim: true,
+  },
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
