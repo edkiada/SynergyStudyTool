@@ -46,8 +46,8 @@
           <div class="taskText" :class="{ 'taskCompleted' : item.status === 'completed' }" >
             <p>{{ item.title }}</p>
             <div class="taskLabel">
-              <p>tag</p>
               <p class="itemPriority" :class="priorityColorClass(item.priority)">{{ item.priority }}</p>
+              <p class="itemTag" v-if="item.tagText" :style="{ backgroundColor : `var(${item.tagColor})`}">{{ item.tagText }}</p>
             </div>
           </div>
         </div>
