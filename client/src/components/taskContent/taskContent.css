@@ -8,11 +8,13 @@
 
 .taskItem {
   display: flex;
-  position: relative;
   justify-content: space-between;
   border-bottom: 1px solid var(--Gray850);
   padding: 1rem 0;
   width: 100%;
+  background-color: var(--white);
+  z-index: 2;
+  transition: transform 0.5s;
 }
 
 .checkBtn {
@@ -50,12 +52,14 @@
 }
 
 .swipped {
-  transform: translateX(-40px);
+  transform: translateX(-55px);
   transition: 0.5s;
 }
 
 .temp {
   display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .deleteBtnItem {
@@ -72,7 +76,7 @@
   position: absolute;
   height: 100%;
   top: 0;
-  outline: 1px solid red;
+  right: 0;
 }
 
 .taskLabel {

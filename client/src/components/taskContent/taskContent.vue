@@ -55,9 +55,9 @@
           <button type="button" class="focusBtn"><img :src="clock"></button>
           <p>start</p>
         </div>
-        <div v-if="item.isSwiped" class="deleteBtnItem">
-          <button type="button" class="deleteBtn" @touchstart.stop @click.stop="dataStore.deleteTask(item.id)">Delete</button>
-        </div>
+      </div>
+      <div class="deleteBtnItem">
+        <button type="button" class="deleteBtn" @touchstart.stop @click.stop="dataStore.deleteTask(item.id)">Delete</button>
       </div>
     </div>
   </section>
