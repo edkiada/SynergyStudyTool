@@ -3,6 +3,23 @@
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
 
+## [0.0.53] - 2026-05-23
+### Added
+- 新增taskTag相關UI顯示 `client/src/component/taskContent`
+- 新增tag顏色選擇和輸入標籤名稱 `client/src/component/addTask`
+
+### Change
+- 新增tag相關資料欄位 `server/src/models/tasks.js`
+- 新增請求資料欄位 `server/src/controllers/tasks.js`
+- 新增dataStore之task資料欄位 `client/src/stores/taskStore.ts`
+
+### Fixed
+- 滑動刪除之按鈕位置錯誤影響排版問題修正 `client/src/component/taskContent`
+- cors參數之相關設定 `server/src/app.js`
+
+### chore
+- 新增八種顏色全域變數 `client/src/style.css`
+
 ## [0.0.52] - 2026-05-22
 ### Added
 - 增加task欄位的priority顯示 `client/src/components/taskContent.vue`
