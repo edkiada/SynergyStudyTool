@@ -2,6 +2,15 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.54] - 2026-5-24
+### feat
+- 新增task邏輯(排序功能) `server/src/services/taskService.js`
+- 掛載task排序邏輯進GET Request `server/src/controllers/tasks.js`
+
+### style
+- 更改taskTag UI `client/src/taskContent`
+- 更改顏色變數 `client/src/style.css`
+
 
 ## [0.0.53] - 2026-05-23
 ### Added
