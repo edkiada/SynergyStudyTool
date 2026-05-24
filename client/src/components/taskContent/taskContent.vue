@@ -47,7 +47,7 @@
             <p>{{ item.title }}</p>
             <div class="taskLabel">
               <p class="itemPriority" :class="priorityColorClass(item.priority)">{{ item.priority }}</p>
-              <p class="itemTag" v-if="item.tagText" :style="{ backgroundColor : `var(${item.tagColor})`}">{{ item.tagText }}</p>
+              <p class="itemTag" v-if="item.tagText" :style="{ color : `var(${item.tagColor})`, '--tagColor': `var(${item.tagColor})`}">{{ item.tagText }}</p>
             </div>
           </div>
         </div>
