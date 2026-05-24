@@ -1,10 +1,13 @@
 const Task = require('../models/task')
+const TaskEngineService = require('../services/taskService')
+
 
 const getAllTasks = async (req, res, next) => {
   try {
     const tasks = await Task
       .find({})
-    res.json(tasks)
+    const sortedTasks = TaskEngineService.sortTasksByCustom(tasks);
+    res.json(sortedTasks)
   } catch(error) {
     next(error)
   }
