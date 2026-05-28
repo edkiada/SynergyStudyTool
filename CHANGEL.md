@@ -2,6 +2,20 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+
+## [0.0.55] - 2026-5-28
+### feat
+- 新增focus頁面 `client/src/view/focusView.vue`
+- 新增mainStore並管理當前頁面變數 `client/src/stores/mainStore.ts` 
+- router中心路由管理 `client/src/router/index.ts`
+- 相關路徑掛載Router `client/src/App.vue`, `client/main.ts`
+- 改為使用mainStore變數記錄當前頁面 `client/src/components/navBar/navBar.vue`
+- 增加RouterLink導覽至task和focus `client/src/components/navBar/navBar.vue`
+
+### chore 
+- 新增Router插件 `client/package.json`, `client/package-lock.json`
+- 更名main.vue為taskView.vue `client/src/view/taskView.vue`
+
 ## [0.0.54] - 2026-5-24
 ### feat
 - 新增task邏輯(排序功能) `server/src/services/taskService.js`
@@ -109,14 +123,14 @@
 
 
 ## note (temp)
-Added: 新增的功能（Feature）。
+**`feat`**: (Feature) Use this when you add new functionality.
 
-Changed: 現有功能的變更（例如：API 欄位名稱修改）。
+**`fix`**: Use this when you repair a bug.
 
-Deprecated: 預計在未來版本刪除的功能。
+**`docs`**: (Documentation) Use this for README updates or comments.
 
-Removed: 此版本已正式刪除的功能。
+**`style`**: Use this for CSS, formatting, or UI changes that don't change logic.
 
-Fixed: 所有的 Bug 修復（你之前的 Router 報錯就寫這）。
+**`refactor`**: Use this when you rewrite code to make it better without changing what it does.
 
-Security: 漏洞修復或安全強化。
+**`chore`**: Use this for maintenance (like installing packages).
