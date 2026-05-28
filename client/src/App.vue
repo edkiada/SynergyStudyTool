@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import index from './view/main.vue'
 </script>
 
 <template>
-  <index />
+  <RouterView />
 </template>
