@@ -3,6 +3,7 @@
 :root {
   --Gray300: hsl(0, 0%, 30%);
   --Gray450: hsl(0, 0%, 44%);
+  --Gray500: hsl(0, 0%, 50%);
   --Gray850: hsl(0, 0%, 84%);
   --Gray900: hsl(0, 0%, 90%);
   --Gray950: hsl(0, 0%, 95%);
@@ -26,6 +27,9 @@
   --tagColorGray: hsl(0, 0%, 60%);
   --tagColorTeal: hsl(180, 100%, 60%);
   --tagColorOrange: hsl(30, 100%, 60%);
+
+  --lightBlock: hsl(240, 11%, 96%);
+  --lightBlueBtn: hsl(216, 100%, 90%);
 }
 
 * {
