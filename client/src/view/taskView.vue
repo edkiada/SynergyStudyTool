@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import { useTaskStore } from '../stores/taskStore'
   import { onMounted } from 'vue'
-  import headerBar from '../components/header/header.vue'
-  import navBer from '../components/navBar/navBar.vue'
-  import taskContent from '../components/taskContent/taskContent.vue'
-  import addTask from '../components/addTask/addTask.vue'
+  import headerBar from '../components/globalComponents/header/header.vue'
+  import navBer from '../components/globalComponents/navBar/navBar.vue'
+  import taskContent from '../components/taskComponents/taskContent/taskContent.vue'
+  import addTask from '../components/taskComponents/addTask/addTask.vue'
   const taskStore = useTaskStore()
 
   onMounted(() => {

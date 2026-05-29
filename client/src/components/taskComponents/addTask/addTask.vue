@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-  import addBtn from "../../assets/icons/addBtn.svg" 
-  import closeBtn from "../../assets/icons/close.svg"
-  import settingIcon from "../../assets/icons/setting.svg"
-  import flag from "../../assets/icons/flag.svg"
-  import tag from "../../assets/icons/tag.svg"
-  import { useTaskStore } from '../../stores/taskStore';
+  import addBtn from "../../../assets/icons/addBtn.svg" 
+  import closeBtn from "../../../assets/icons/close.svg"
+  import settingIcon from "../../../assets/icons/setting.svg"
+  import flag from "../../../assets/icons/flag.svg"
+  import tag from "../../../assets/icons/tag.svg"
+  import { useTaskStore } from '../../../stores/taskStore';
 
   const taskStore = useTaskStore();
   const isModalOpen = ref(false);

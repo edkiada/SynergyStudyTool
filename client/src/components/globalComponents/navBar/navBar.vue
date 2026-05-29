@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { useMainStore } from "../../stores/mainStore";
-  import taskIcon from "../../assets/icons/task.svg"
-  import taskIconChecked from "../../assets/icons/task(check).svg"
-  import calendar from "../../assets/icons/calendar.svg"
-  import calendarChecked from "../../assets/icons/calendar(check).svg"
-  import focusIcon from "../../assets/icons/focus.svg"
-  import focusIconChecked from "../../assets/icons/focus(check).svg"
-  import Note from "../../assets/icons/note.svg"
-  import NoteChecked from "../../assets/icons/note(check).svg"
+  import { useMainStore } from "../../../stores/mainStore";
+  import taskIcon from "../../../assets/icons/task.svg"
+  import taskIconChecked from "../../../assets/icons/task(check).svg"
+  import calendar from "../../../assets/icons/calendar.svg"
+  import calendarChecked from "../../../assets/icons/calendar(check).svg"
+  import focusIcon from "../../../assets/icons/focus.svg"
+  import focusIconChecked from "../../../assets/icons/focus(check).svg"
+  import Note from "../../../assets/icons/note.svg"
+  import NoteChecked from "../../../assets/icons/note(check).svg"
   const mainStore = useMainStore()
   const switchView = (view: string) => {
     mainStore.nowView = view

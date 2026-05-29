@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import headerBar from '../components/header/header.vue'
-  import navBer from '../components/navBar/navBar.vue'
+  import headerBar from '../components/globalComponents/header/header.vue'
+  import navBer from '../components/globalComponents/navBar/navBar.vue'
 
 </script>
 

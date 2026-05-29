@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import userIcon from '../../assets/icons/user.svg'
+  import userIcon from '../../../assets/icons/user.svg'
   const today = new Date()
   const updateDate = computed(() => {
     return today.toLocaleDateString('en-MG', {

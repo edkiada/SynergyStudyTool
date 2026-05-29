@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { useTaskStore } from '../../stores/taskStore';
+  import { useTaskStore } from '../../../stores/taskStore';
   import { onMounted } from 'vue';
-  import clock from "../../assets/icons/clock.svg"
-  import tick from "../../assets/icons/tick.svg"
+  import clock from "../../../assets/icons/clock.svg"
+  import tick from "../../../assets/icons/tick.svg"
   const dataStore = useTaskStore();
 
   onMounted(() => {
