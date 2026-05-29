@@ -3,6 +3,17 @@
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
 
+## [0.0.6] - 2026-5-29
+### feat
+- 計時器UI設計 `client/src/components/focusComponents/dualTimer`, `client/src/view/focusView.vue`
+
+### refactor
+- 將component依頁面打包 `client/src/components`, `client/src/view`
+
+### style
+- 將 header 和 navBar 的留白由padding改為margin `client/src/components/globalComponents/header/header.css`, `client/src/components/globalComponents/navBar/navBar.css`
+- 新增顏色變數 `client/src/style.css`
+
 ## [0.0.55] - 2026-5-28
 ### feat
 - 新增focus頁面 `client/src/view/focusView.vue`
