@@ -2,6 +2,10 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.61] - 2026-5-30
+### feat
+- focus介面當前task UI設計 `client/src/components/focusComponents/focusTask`, `client/src/view/taskView.vue`, `client/src/assets/icons/dropdown.svg`
+
 
 ## [0.0.6] - 2026-5-29
 ### feat
