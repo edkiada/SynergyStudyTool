@@ -1,0 +1,83 @@
+.mainContainer {
+  margin: 2rem;
+  background-color: var(--lightBlock);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  position: relative;
+  gap: 4px;
+}
+
+.Btn {
+  border: none;
+  background-color: var(--lightBlock);
+}
+
+.taskItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.completedTask {
+  border: 1px solid var(--Gray850);
+  border-radius: 4px;
+  background-color: var(--white);
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--Gray850);
+  left: 20%;
+  width: 60%;
+  max-height: 7rem;
+  overflow-y: auto;
+}
+
+.taskBtn {
+  text-align: left;
+  width: 100%;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--white);
+  color: var(--Gray500);
+}
+
+.taskPriority {
+  color: var(--Gray500);
+  background-color: var(--priorityColor);
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+}
+
+.taskText {
+  color: var(--Gray500);
+  font-weight: bold;
+}
+
+.unSee {
+  visibility: hidden;
+}
+
+.taskInfo {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lowPriority {
+  background-color: var(--PriorityGreen);
+}
+
+.mediumPriority {
+  background-color: var(--PriorityYellow);
+}
+
+.highPriority {
+  background-color: var(--PriorityRed);
+}

@@ -4,6 +4,7 @@
   import headerBar from '../components/globalComponents/header/header.vue'
   import navBer from '../components/globalComponents/navBar/navBar.vue'
   import dualTimer from '../components/focusComponents/dualTimer/dualTimer.vue'
+  import focusTask from '../components/focusComponents/focusTask/focusTask.vue'
   const mainStore = useMainStore()
 
   onMounted(() => {
@@ -16,6 +17,7 @@
   <main>
     <navBer />
     <dualTimer />
+    <focusTask />
   </main>
 </template>
 
