@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.62] - 2026-5-31
+### feat
+- 使用localStorage儲存當前任務選擇 `client/src/components/focusComponents/focusTask/focusTask.vue`
+
+### fix
+- 解決中英文文字行高不同問題 `client/src/components/focusComponents/focusTask/focusTask.css`
+- 解決因為原生縮放導致的畫面跑版問題 `client/src/style.css`
+
 ## [0.0.61] - 2026-5-30
 ### feat
 - focus介面當前task UI設計 `client/src/components/focusComponents/focusTask`, `client/src/view/taskView.vue`, `client/src/assets/icons/dropdown.svg`
