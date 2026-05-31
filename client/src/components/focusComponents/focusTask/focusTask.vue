@@ -6,15 +6,17 @@
   
   const taskStore = useTaskStore();
   const isTaskListOpen = ref(false);
-  const nowTask = ref('EMPTY');
-  const taskPriority = ref('');
+  const precentFocusTask = ref(localStorage.getItem('precentFocusTask') || 'EMPTY');
+  const precentTaskPrioirty = ref(localStorage.getItem('precentTaskPrioirty') || '');
   const toggleTaskList = () => {
     isTaskListOpen.value = !isTaskListOpen.value;
   };
 
   const updateNowTask = (title: string, priority: string) => {
-    nowTask.value = title;
-    taskPriority.value = priority;
+    localStorage.setItem('precentFocusTask', title);
+    localStorage.setItem('precentTaskPrioirty', priority);
+    precentFocusTask.value = (localStorage.getItem('precentFocusTask') || 'EMPTY');
+    precentTaskPrioirty.value = (localStorage.getItem('precentTaskPrioirty') || '');
     isTaskListOpen.value = false;
   };
   const priorityColor = (priority : String) => {
@@ -40,12 +42,12 @@
     <div class="taskItem">
       <div class="taskInfo">
         <button class="completedTask Btn"></button>
-        <p class="taskText">{{ nowTask }}</p>
+        <p class="taskText">{{ precentFocusTask }}</p>
       </div>
-      <div class="taskPriority" :class="{'unSee' : nowTask == 'EMPTY'}" :style="{'--priorityColor' : priorityColor(taskPriority) }"></div>
+      <div class="taskPriority" :style="{'--priorityColor' : priorityColor(precentTaskPrioirty) }"></div>
     </div>
     <div class="overlay" v-show="isTaskListOpen">
-      <button class="Btn taskBtn" @click="updateNowTask('EMPTY', '')">EMPTY</button>
+      <button class="Btn taskBtn" @click="updateNowTask('EMPTY', 'low')">EMPTY</button>
       <div v-for="(item, index) in taskStore.tasks" :key="index">
         <button class="Btn taskBtn" v-show="item.status == 'pending'" @click="updateNowTask(item.title, item.priority)">{{ item.title }}</button>
       </div>
