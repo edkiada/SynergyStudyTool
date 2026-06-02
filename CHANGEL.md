@@ -2,6 +2,18 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.63] - 2026-6-02
+### feat
+- 新增由task點擊start按鈕跳轉focus頁面功能 `client/src/components/taskComponents/taskContent`
+- 倒／順計時核心邏輯 `client/src/components/focusComponents/dualTimer`
+
+### fix
+- 針對focusTask在pinia部分action補commit `client/src/stores/taskStore.ts`
+
+### refactor
+- 將切換頁面switchView包裝成action寫入main `client/src/components/globalComponents/navBar/navBar.vue`, `client/src/stores/mainStore.ts`
+
+
 ## [0.0.62] - 2026-5-31
 ### feat
 - 使用localStorage儲存當前任務選擇 `client/src/components/focusComponents/focusTask/focusTask.vue`
