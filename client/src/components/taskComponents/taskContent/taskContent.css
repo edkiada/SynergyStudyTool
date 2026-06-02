@@ -136,3 +136,8 @@
   border-radius: 50%;
   background-color: var(--tagColor);
 }
+
+.focusText {
+  color: var(--Gray500);
+  text-decoration: none;
+}

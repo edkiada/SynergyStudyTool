@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import { useTaskStore } from '../../../stores/taskStore';
+  import { useMainStore } from '../../../stores/mainStore';
   import { onMounted } from 'vue';
   import clock from "../../../assets/icons/clock.svg"
   import tick from "../../../assets/icons/tick.svg"
   const dataStore = useTaskStore();
+  const mainStore = useMainStore();
 
   onMounted(() => {
     dataStore.fetchTasks();
@@ -35,6 +37,14 @@
       item.isSwiped = false;
     }
   }
+
+  const startFocus = (item: any) => {
+    mainStore.nowView = 'focus';
+    localStorage.setItem('precentFocusTask', item.title);
+    localStorage.setItem('precentTaskPrioirty', item.priority);
+    dataStore.precentFocusTask = item.title;
+    dataStore.precentTaskPrioirty = item.priority;
+  }
 </script>
 
 <template>
@@ -52,8 +62,10 @@
           </div>
         </div>
         <div class="focusBtnItem" :class="{ 'focusBtnCompleted' : item.status === 'completed' }" >
-          <button type="button" class="focusBtn"><img :src="clock"></button>
-          <p>start</p>
+          <RouterLink to="/focus">
+            <button type="button" class="focusBtn" @click="startFocus(item)"><img :src="clock"></button>
+          </RouterLink>
+          <p class="focusText">start</p>
         </div>
       </div>
       <div class="deleteBtnItem">
