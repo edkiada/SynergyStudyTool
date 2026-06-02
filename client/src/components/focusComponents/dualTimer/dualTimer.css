@@ -46,6 +46,7 @@
   font-weight: bold;
   font-size: 4.5rem;
   color: var(--Gray500);
+  font-variant-numeric: tabular-nums;
 }
 
 .timerControl {
@@ -75,4 +76,8 @@
 
 .unSee {
   visibility: hidden;
+}
+
+.selectBtn {
+  background-color: var(--lightBlueBtn);
 }
