@@ -22,11 +22,13 @@ interface NewTaskInput {
   tagColor: string;
 }
 
-const API_URL = 'http://192.168.1.177:3001/api/tasks';
+const API_URL = 'http://192.168.0.113:3001/api/tasks';
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [] as Task[],
+    precentFocusTask: localStorage.getItem('precentFocusTask') || '',
+    precentTaskPrioirty: localStorage.getItem('precentTaskPrioirty') || '',
   }),
   actions: {
     async fetchTasks() {
@@ -49,6 +51,10 @@ export const useTaskStore = defineStore('taskStore', {
     async deleteTask(taskId: string) {
       try {
         await axios.delete(`${API_URL}/${taskId}`);
+        localStorage.setItem('precentFocusTask', 'EMPTY');
+        localStorage.setItem('precentTaskPrioirty', 'low');
+        this.precentFocusTask = localStorage.getItem('precentFocusTask') || '';
+        this.precentTaskPrioirty = localStorage.getItem('precentTaskPrioirty') || '';
         await this.fetchTasks(); 
       } catch (error) {
         console.error("Failed to delete task:", error);
