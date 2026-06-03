@@ -14,9 +14,9 @@
     localStorage.setItem('precentFocusTask', title);
     localStorage.setItem('precentTaskPrioirty', priority);
     localStorage.setItem('precentFocusTaskId', id);
-    taskStore.precentFocusTask = (localStorage.getItem('precentFocusTask') || 'EMPTY');
-    taskStore.precentTaskPrioirty = (localStorage.getItem('precentTaskPrioirty') || '');
-    taskStore.precentTaskId = (localStorage.getItem('precentFocusTaskId') || '');
+    taskStore.currentFocusTask = (localStorage.getItem('precentFocusTask') || 'EMPTY');
+    taskStore.currentTaskPrioirty = (localStorage.getItem('precentTaskPrioirty') || '');
+    taskStore.currentTaskId = (localStorage.getItem('precentFocusTaskId') || '');
     isTaskListOpen.value = false;
   };
   const priorityColor = (priority : String) => {
@@ -42,9 +42,9 @@
     <div class="taskItem">
       <div class="taskInfo">
         <button class="completedTask Btn"></button>
-        <p class="taskText">{{ taskStore.precentFocusTask }}</p>
+        <p class="taskText">{{ taskStore.currentFocusTask }}</p>
       </div>
-      <div class="taskPriority" :style="{'--priorityColor' : priorityColor(taskStore.precentTaskPrioirty) }"></div>
+      <div class="taskPriority" :style="{'--priorityColor' : priorityColor(taskStore.currentTaskPrioirty) }"></div>
     </div>
     <div class="overlay" v-show="isTaskListOpen">
       <button class="Btn taskBtn" @click="updateNowTask('EMPTY', 'low', '')">EMPTY</button>

@@ -27,9 +27,9 @@ const API_URL = 'http://192.168.0.113:3001/api/tasks';
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [] as Task[],
-    precentFocusTask: localStorage.getItem('precentFocusTask') || '',
-    precentTaskPrioirty: localStorage.getItem('precentTaskPrioirty') || '',
-    precentTaskId: localStorage.getItem('precentTaskId') || '',
+    currentFocusTask: localStorage.getItem('precentFocusTask') || '',
+    currentTaskPrioirty: localStorage.getItem('precentTaskPrioirty') || '',
+    currentTaskId: localStorage.getItem('precentTaskId') || '',
   }),
   actions: {
     async fetchTasks() {
@@ -52,10 +52,10 @@ export const useTaskStore = defineStore('taskStore', {
     async deleteTask(taskId: string) {
       try {
         await axios.delete(`${API_URL}/${taskId}`);
-        if(this.precentTaskId === taskId) {
-          this.precentFocusTask = 'EMPTY';
-          this.precentTaskPrioirty = 'low';
-          this.precentTaskId = '';
+        if(this.currentTaskId === taskId) {
+          this.currentFocusTask = 'EMPTY';
+          this.currentTaskPrioirty = 'low';
+          this.currentTaskId = '';
           localStorage.setItem('precentFocusTask', 'EMPTY');
           localStorage.setItem('precentTaskPrioirty', 'low');
           localStorage.setItem('precentTaskId', '');
