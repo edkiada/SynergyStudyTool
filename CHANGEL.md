@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.64] - 2026-6-03
+### feat
+- focusStore創建 `client/src/stores/focusStore.ts`
+
+### fix
+- focusTaskId用以追蹤刪除的任務是否為當前專注任務 `client/src/components/focusComponents/focusTask/focusTask.vue`, `client/src/components/taskComponents/taskContent`, `client/src/stores/taskStore.ts`
+- 命名錯誤 `client/src/components/focusComponents/focusTask/focusTask.vue`, `client/src/components/taskComponents/taskContent`, `client/src/stores/taskStore.ts`
+
 ## [0.0.63] - 2026-6-02
 ### feat
 - 新增由task點擊start按鈕跳轉focus頁面功能 `client/src/components/taskComponents/taskContent`
