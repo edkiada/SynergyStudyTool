@@ -42,6 +42,7 @@
     mainStore.nowView = 'focus';
     localStorage.setItem('precentFocusTask', item.title);
     localStorage.setItem('precentTaskPrioirty', item.priority);
+    localStorage.setItem('precentFocusTaskId', item.id);
     dataStore.precentFocusTask = item.title;
     dataStore.precentTaskPrioirty = item.priority;
   }

@@ -29,6 +29,7 @@ export const useTaskStore = defineStore('taskStore', {
     tasks: [] as Task[],
     precentFocusTask: localStorage.getItem('precentFocusTask') || '',
     precentTaskPrioirty: localStorage.getItem('precentTaskPrioirty') || '',
+    precentTaskId: localStorage.getItem('precentTaskId') || '',
   }),
   actions: {
     async fetchTasks() {
@@ -51,10 +52,14 @@ export const useTaskStore = defineStore('taskStore', {
     async deleteTask(taskId: string) {
       try {
         await axios.delete(`${API_URL}/${taskId}`);
-        localStorage.setItem('precentFocusTask', 'EMPTY');
-        localStorage.setItem('precentTaskPrioirty', 'low');
-        this.precentFocusTask = localStorage.getItem('precentFocusTask') || '';
-        this.precentTaskPrioirty = localStorage.getItem('precentTaskPrioirty') || '';
+        if(this.precentTaskId === taskId) {
+          this.precentFocusTask = 'EMPTY';
+          this.precentTaskPrioirty = 'low';
+          this.precentTaskId = '';
+          localStorage.setItem('precentFocusTask', 'EMPTY');
+          localStorage.setItem('precentTaskPrioirty', 'low');
+          localStorage.setItem('precentTaskId', '');
+        }
         await this.fetchTasks(); 
       } catch (error) {
         console.error("Failed to delete task:", error);

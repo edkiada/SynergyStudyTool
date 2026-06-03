@@ -6,17 +6,17 @@
   
   const taskStore = useTaskStore();
   const isTaskListOpen = ref(false);
-  const precentFocusTask = ref(localStorage.getItem('precentFocusTask') || 'EMPTY');
-  const precentTaskPrioirty = ref(localStorage.getItem('precentTaskPrioirty') || '');
   const toggleTaskList = () => {
     isTaskListOpen.value = !isTaskListOpen.value;
   };
 
-  const updateNowTask = (title: string, priority: string) => {
+  const updateNowTask = (title: string, priority: string, id: string) => {
     localStorage.setItem('precentFocusTask', title);
     localStorage.setItem('precentTaskPrioirty', priority);
-    precentFocusTask.value = (localStorage.getItem('precentFocusTask') || 'EMPTY');
-    precentTaskPrioirty.value = (localStorage.getItem('precentTaskPrioirty') || '');
+    localStorage.setItem('precentFocusTaskId', id);
+    taskStore.precentFocusTask = (localStorage.getItem('precentFocusTask') || 'EMPTY');
+    taskStore.precentTaskPrioirty = (localStorage.getItem('precentTaskPrioirty') || '');
+    taskStore.precentTaskId = (localStorage.getItem('precentFocusTaskId') || '');
     isTaskListOpen.value = false;
   };
   const priorityColor = (priority : String) => {
@@ -42,14 +42,14 @@
     <div class="taskItem">
       <div class="taskInfo">
         <button class="completedTask Btn"></button>
-        <p class="taskText">{{ precentFocusTask }}</p>
+        <p class="taskText">{{ taskStore.precentFocusTask }}</p>
       </div>
-      <div class="taskPriority" :style="{'--priorityColor' : priorityColor(precentTaskPrioirty) }"></div>
+      <div class="taskPriority" :style="{'--priorityColor' : priorityColor(taskStore.precentTaskPrioirty) }"></div>
     </div>
     <div class="overlay" v-show="isTaskListOpen">
-      <button class="Btn taskBtn" @click="updateNowTask('EMPTY', 'low')">EMPTY</button>
+      <button class="Btn taskBtn" @click="updateNowTask('EMPTY', 'low', '')">EMPTY</button>
       <div v-for="(item, index) in taskStore.tasks" :key="index">
-        <button class="Btn taskBtn" v-show="item.status == 'pending'" @click="updateNowTask(item.title, item.priority)">{{ item.title }}</button>
+        <button class="Btn taskBtn" v-show="item.status == 'pending'" @click="updateNowTask(item.title, item.priority, item.id)">{{ item.title }}</button>
       </div>
     </div>
   </section>
