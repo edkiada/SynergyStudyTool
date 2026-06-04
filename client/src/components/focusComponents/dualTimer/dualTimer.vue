@@ -1,6 +1,10 @@
 <script setup lang="ts">
   import { ref, computed } from 'vue';
+  import { useFocusStore } from '../../../stores/focusStore';
+  import { useTaskStore } from '../../../stores/taskStore';
 
+  const taskStore = useTaskStore();
+  const focusStore = useFocusStore();
   const isRunning = ref(false);
   const totalDuration = ref(25 * 60); 
   const secandsLeft = ref(25 * 60);
@@ -52,6 +56,31 @@
 
   const stopTimer = () => {
     isRunning.value = false;
+    if(activeMode.value === 'TimeTracker') {
+      if(taskStore.currentFocusTask !== 'EMPTY') {
+        focusStore.saveFocusSessions({
+          startTime: new Date(Date.now() - countUpSecands.value * 1000).toISOString(),
+          duration: countUpSecands.value,
+          source: {
+            type: 'task',
+            refId: taskStore.currentTaskId,
+            onModel: "Task"
+          }
+        })
+      } 
+    } else if(activeMode.value === 'FocusBlock') {
+      if(taskStore.currentFocusTask !== 'EMPTY') {
+        focusStore.saveFocusSessions({
+          startTime: new Date(Date.now() - (totalDuration.value - secandsLeft.value) * 1000).toISOString(),
+          duration: totalDuration.value - secandsLeft.value,
+          source: {
+            type: 'task',
+            refId: taskStore.currentTaskId,
+            onModel: "Task"
+          }
+        })
+      }
+    }
     secandsLeft.value = totalDuration.value;
     countUpSecands.value = 0;
     secand.value = 0;
