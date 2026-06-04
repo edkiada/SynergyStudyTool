@@ -1,16 +1,13 @@
 <script setup lang="ts">
-  import { useTaskStore } from '../stores/taskStore'
   import { useMainStore } from '../stores/mainStore'
   import { onMounted } from 'vue'
   import headerBar from '../components/globalComponents/header/header.vue'
   import navBer from '../components/globalComponents/navBar/navBar.vue'
   import taskContent from '../components/taskComponents/taskContent/taskContent.vue'
   import addTask from '../components/taskComponents/addTask/addTask.vue'
-  const taskStore = useTaskStore()
   const mainStore = useMainStore()
 
   onMounted(() => {
-    taskStore.fetchTasks()
     mainStore.nowView = 'task'
   })
 </script>
