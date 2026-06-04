@@ -38,6 +38,11 @@
     }
   }
 
+  const deleteTask = (item: any) => {
+    dataStore.deleteTask(item.id);
+    item.isSwiped = false;
+  }
+
   const startFocus = (item: any) => {
     mainStore.nowView = 'focus';
     localStorage.setItem('precentFocusTask', item.title);
@@ -70,7 +75,7 @@
         </div>
       </div>
       <div class="deleteBtnItem">
-        <button type="button" class="deleteBtn" @touchstart.stop @click.stop="dataStore.deleteTask(item.id)">Delete</button>
+        <button type="button" class="deleteBtn" @touchstart.stop @click.stop="deleteTask(item)">Delete</button>
       </div>
     </div>
   </section>
