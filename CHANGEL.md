@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.65] - 2026-6-04
+## feat
+- 停止計時後將時間加總至當前任務 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
+
+### fix
+- 刪除任務之任務殘留顯示問題(只處理破圖, 未解決根源) `client/src/components/taskComponents/taskContent/taskContent.vue`
+- 重複呼叫fetchTask問題 `client/src/view/taskView.vue`
+
 ## [0.0.64] - 2026-6-03
 ### feat
 - focusStore創建 `client/src/stores/focusStore.ts`
