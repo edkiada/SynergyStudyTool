@@ -50,6 +50,7 @@
     localStorage.setItem('precentFocusTaskId', item.id);
     dataStore.currentFocusTask = item.title;
     dataStore.currentTaskPrioirty = item.priority;
+    dataStore.currentTaskId = item.id;
   }
 </script>
 

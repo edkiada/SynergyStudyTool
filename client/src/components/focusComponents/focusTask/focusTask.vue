@@ -33,6 +33,9 @@
 
   onMounted(() => {
     taskStore.fetchTasks();
+    taskStore.currentFocusTask = (localStorage.getItem('precentFocusTask') || 'EMPTY');
+    taskStore.currentTaskPrioirty = (localStorage.getItem('precentTaskPrioirty') || 'low');
+    taskStore.currentTaskId = (localStorage.getItem('precentFocusTaskId') || '');
   })
 </script>
 
