@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.7] - 2026-6-07
+## feat
+- 初始化calendar頁面 `client/src/view/calendarView.vue`, `client/src/router/index.ts`, `client/src/components/globalComponents/navBar/navBar.vue`
+- calendar頁面header(選擇日期特殊版) `client/src/components/calendarComponents/cHeader` 
+
+## style
+- 顏色變數 `client/src/style.css`
+
 ## [0.0.66] - 2026-6-05
 ## fix
 - 刷新頁面造成Task refId遺失 `client/src/components/focusComponents/focusTask/focusTask.vue`, `client/src/components/taskComponents/taskContent/taskContent.vue`
