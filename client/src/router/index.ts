@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import taskView from '../view/taskView.vue'
 import focusView from '../view/focusView.vue'
+import calendarView from '../view/calendarView.vue';
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/focus',
     name: 'focus',
     component: focusView
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: calendarView
   }
 ];
 
