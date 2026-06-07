@@ -1,0 +1,78 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+  position: relative;
+}
+
+.date {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  padding-bottom: 0.5rem;
+} 
+
+
+.overlay {
+  position: absolute;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--Gray500);
+  padding: 0.4rem;
+  border-radius: 8px;
+  top: 100%;
+  right: 0;
+}
+
+.dateRow {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.dateItem {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+}
+
+.notCurrentMonth {
+  visibility: hidden;
+}
+
+.workDay {
+  color: var(--workDay)
+}
+
+.restDay {
+  color: var(--restDay);
+}
+
+.monthText {
+  font-size: 1rem;
+  color: var(--Gray450);
+  margin-bottom: 0.5rem;
+}
+
+.dateBtn.selectedDay {
+  background-color: var(--lightBlueBtn);
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.currentDateBtn {
+  background-color: white;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--Gray500);
+}
+
+.dateBtn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: var(--white);
+}
