@@ -22,7 +22,9 @@
       <p>Task</p>
     </div>
     <div class="btnContainer">
-      <button type="button" class="appBtn" @click="mainStore.switchView('calendar')"><img :src="mainStore.nowView === 'calendar' ? calendarChecked : calendar" alt="taskIcon"></button>
+      <RouterLink to="/calendar">
+        <button type="button" class="appBtn" @click="mainStore.switchView('calendar')"><img :src="mainStore.nowView === 'calendar' ? calendarChecked : calendar" alt="taskIcon"></button>
+      </RouterLink>
       <p>Calendar</p>
     </div>
     <div class="btnContainer">
