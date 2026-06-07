@@ -30,6 +30,9 @@
 
   --lightBlock: hsl(240, 11%, 96%);
   --lightBlueBtn: hsl(216, 100%, 90%);
+
+  --workDay: hsl(0, 96%, 70%);
+  --restDay: hwb(201 60% 70%);
 }
 
 * {
