@@ -1,0 +1,23 @@
+.timeContainer {
+  margin: 2rem;
+  overflow-y: auto;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeItem {
+  display: flex;
+  outline: 1px solid red;
+}
+
+.timeText {
+  width: 4rem;
+  text-align: right;
+}
+
+.test {
+  height: 5rem;
+  width: 100%;
+  outline: 1px solid red;
+}
