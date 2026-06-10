@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const SessionController = require('../controllers/focusSessions')
+const sessionController = require('../controllers/focusSessions')
 
-router.post('/', SessionController.createFocusSession)
+router.post('/', sessionController.createFocusSession)
 
 module.exports = router
