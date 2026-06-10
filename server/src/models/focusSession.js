@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
 const focusSchema = new mongoose.Schema({
-  stringTime: {
+  startTime: {
     type: Date,
+    required: true,
   },
   duration: {
     type: Number,
