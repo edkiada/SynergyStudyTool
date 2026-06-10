@@ -200,7 +200,7 @@
 ## 3. 蕃茄鐘模組 (focusSession)
 
 ### 3.1 取得專注紀錄
-- **Endpoint**: `GET /focusSession?type=independent`
+- **Endpoint**: `GET /focusSession/Calendar?year=${year}&month=${month}&day=${day}`
 - **Description**: 取得專注紀錄。
 - **Response**
   - `200 ok`
