@@ -2,20 +2,31 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.71] - 2026-6-10
+### feat
+- 讀取自選日期之focus資料(後端) `server/src/controllers/focusSessions.js`, `server/src/models/focusSession.js`, `server/src/routes/focusRouter.js`
+- Calendar頁面之timeLine Components初始化 `client/src/components/calendarComponents/timeLine`, `client/src/view/calendarView.vue`
+
+### docs
+- 更改API_SPEC之自選日期需求 `docs/API_SPEC.md`
+
+### fix 
+- 使用大駝峰命名錯誤 `server/src/routes/focusRouter.js`
+
 ## [0.0.7] - 2026-6-07
-## feat
+### feat
 - 初始化calendar頁面 `client/src/view/calendarView.vue`, `client/src/router/index.ts`, `client/src/components/globalComponents/navBar/navBar.vue`
 - calendar頁面header(選擇日期特殊版) `client/src/components/calendarComponents/cHeader` 
 
-## style
+### style
 - 顏色變數 `client/src/style.css`
 
 ## [0.0.66] - 2026-6-05
-## fix
+### fix
 - 刷新頁面造成Task refId遺失 `client/src/components/focusComponents/focusTask/focusTask.vue`, `client/src/components/taskComponents/taskContent/taskContent.vue`
 
 ## [0.0.65] - 2026-6-04
-## feat
+### feat
 - 停止計時後將時間加總至當前任務 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
 
 ### fix
