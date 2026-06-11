@@ -59,7 +59,7 @@
     if(activeMode.value === 'TimeTracker') {
       if(taskStore.currentFocusTask !== 'EMPTY') {
         focusStore.saveFocusSessions({
-          startTime: new Date(Date.now() - countUpSecands.value * 1000).toISOString(),
+          startTime: new Date(Date.now() - countUpSecands.value * 1000),
           duration: countUpSecands.value,
           source: {
             type: 'task',
@@ -71,7 +71,7 @@
     } else if(activeMode.value === 'FocusBlock') {
       if(taskStore.currentFocusTask !== 'EMPTY') {
         focusStore.saveFocusSessions({
-          startTime: new Date(Date.now() - (totalDuration.value - secandsLeft.value) * 1000).toISOString(),
+          startTime: new Date(Date.now() - (totalDuration.value - secandsLeft.value) * 1000),
           duration: totalDuration.value - secandsLeft.value,
           source: {
             type: 'task',

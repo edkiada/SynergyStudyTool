@@ -2,7 +2,7 @@ import axios from 'axios';
 import { defineStore } from 'pinia';
 
 interface addFocus {
-  startTime: string;
+  startTime: Date;
   duration: number;
   source: {
     type: string;
