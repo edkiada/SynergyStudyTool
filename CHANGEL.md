@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.72] - 2026-6-11
+### feat
+- 繪製focus時間並在calendar圖示化 `client/src/components/calendarComponents/timeLine`, `client/src/stores/focusStore.ts`
+- calendar記錄顯示task title `server/src/models/focusSession.js`, `client/src/stores/focusStore.ts`, `client/src/components/focusComponents/dualTimer/dualTimer.vue`
+- calendar顯示條件化(過低時間不顯示)  `client/src/components/calendarComponents/timeLine/timeLine.vue`
+### fix
+- 修正addFocus錯誤將日期格式認為string `client/src/components/focusComponents/dualTimer/dualTimer.vue`, `client/src/stores/focusStore.ts`
+
 ## [0.0.71] - 2026-6-10
 ### feat
 - 讀取自選日期之focus資料(後端) `server/src/controllers/focusSessions.js`, `server/src/models/focusSession.js`, `server/src/routes/focusRouter.js`
