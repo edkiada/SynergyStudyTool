@@ -63,6 +63,7 @@
           duration: countUpSecands.value,
           source: {
             type: 'task',
+            taskName: taskStore.currentFocusTask,
             refId: taskStore.currentTaskId,
             onModel: "Task"
           }
@@ -75,6 +76,7 @@
           duration: totalDuration.value - secandsLeft.value,
           source: {
             type: 'task',
+            taskName: taskStore.currentFocusTask,
             refId: taskStore.currentTaskId,
             onModel: "Task"
           }

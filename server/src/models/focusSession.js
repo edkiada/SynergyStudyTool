@@ -15,6 +15,9 @@ const focusSchema = new mongoose.Schema({
       enum: ['task', 'independent'],
       default: 'independent'
     },
+    taskName: {
+      type: String,
+    },
     refId: {
       type: mongoose.Schema.Types.ObjectId,
       refPath: 'source.onModel'
