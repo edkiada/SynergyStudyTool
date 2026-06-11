@@ -16,11 +16,14 @@
       const minutesFromStart = (startHour - START_HOUR) * 60 + startMinute;
       const topPosition = (minutesFromStart / 60) * HOUR_HEIGHT;
       const blockHeight = (session.duration / 3600) * HOUR_HEIGHT;
-
+      const show = true ? session.duration >= 600 : false;
+      const showText = true ? session.duration >= 1500 : false;
       return {
         ...session,
         top: `${topPosition}px`,
-        height: `${blockHeight}px`
+        height: `${blockHeight}px`,
+        isShow: show,
+        isShowText: showText
       }
     })
   })
@@ -39,8 +42,8 @@
         <div class="test"></div>
       </div>
       <div class="timeLineContent">
-        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" :style="{'top': session.top, 'height': session.height}">
-          <p class="sessionText">test</p>
+        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height}">
+          <p class="sessionText" v-show="session.isShowText">{{ session.source.taskName }}</p>
         </div>
       </div>
     </div>
