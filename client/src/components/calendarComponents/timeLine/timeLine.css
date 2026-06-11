@@ -4,20 +4,28 @@
   height: 50vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .timeItem {
   display: flex;
-  outline: 1px solid red;
 }
 
 .timeText {
-  width: 4rem;
+  width: 4.5rem;
   text-align: right;
 }
 
 .test {
   height: 5rem;
   width: 100%;
-  outline: 1px solid red;
+}
+
+.sessionBlock {
+  position: absolute;
+  background-color: var(--white);
+  border: 1px solid var(--Gray850);
+  border-radius: 8px;
+  width: 80%;
+  left: 20%;
 }
