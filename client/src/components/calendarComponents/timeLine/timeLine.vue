@@ -49,7 +49,7 @@
         <div class="test"></div>
       </div>
       <div class="timeLineContent">
-        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height, '--sessionColor': `var(${session.color}Light)` }">
+        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height, '--sessionColor': `var(${session.color}Light)`, '--sessionFakeElementColor': `var(${session.color})` }">
           <p class="sessionText" v-show="session.isShowText">{{ session.title }}</p>
         </div>
       </div>

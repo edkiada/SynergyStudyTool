@@ -14,6 +14,7 @@
 .timeText {
   width: 4.5rem;
   text-align: right;
+  color: var(--Gray500);
 }
 
 .test {
@@ -27,4 +28,21 @@
   border-radius: 4px;
   width: 80%;
   left: 20%;
+  padding: 0.6rem 1.75rem;
+}
+
+.sessionText::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  position: absolute;
+  left: 0.5rem;
+  top: 30%;
+  border-radius: 50%;
+  background-color: var(--sessionFakeElementColor);
+}
+
+.sessionText {
+  color: var(--Gray500);
+  font-weight: bold;
 }
