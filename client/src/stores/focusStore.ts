@@ -7,7 +7,6 @@ interface FocusSession {
   duration: number;
   source: {
     type: string;
-    taskName: string,
     refId?: string;
     onModel?: string;
   }
@@ -18,7 +17,6 @@ interface addFocus {
   duration: number;
   source: {
     type: string;
-    taskName: string,
     refId?: string;
     onModel?: string;
   }
