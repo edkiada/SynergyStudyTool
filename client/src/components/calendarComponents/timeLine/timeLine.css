@@ -25,10 +25,13 @@
 .sessionBlock {
   position: absolute;
   background-color: var(--sessionColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 4px;
   width: 80%;
   left: 20%;
-  padding: 0.6rem 1.75rem;
+  padding: 0.6rem 1rem 0.6rem 1.75rem;
 }
 
 .sessionText::before {
@@ -37,7 +40,7 @@
   height: 0.75rem;
   position: absolute;
   left: 0.5rem;
-  top: 30%;
+  top: 35%;
   border-radius: 50%;
   background-color: var(--sessionFakeElementColor);
 }

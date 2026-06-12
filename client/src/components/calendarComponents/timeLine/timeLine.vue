@@ -21,13 +21,14 @@
       const show = true ? session.duration >= 600 : false;
       const showText = true ? session.duration >= 1500 : false;
       const matchingTask = taskStore.tasks.find(task => task.id === session.source.refId);
-      
+      const durationTime = session.duration >= 3600 ? `${Math.floor(session.duration / 3600)}h ${Math.floor((session.duration % 3600) / 60)}m` : `${Math.ceil(session.duration / 60)}m`;
       return {
         ...session,
         top: `${topPosition}px`,
         height: `${blockHeight}px`,
         isShow: show,
         isShowText: showText,
+        durationTime: durationTime.toString(),
         title: matchingTask ? matchingTask.title : '',
         color: matchingTask ? matchingTask.tagColor : '--lightBlock'
       }
@@ -51,6 +52,7 @@
       <div class="timeLineContent">
         <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height, '--sessionColor': `var(${session.color}Light)`, '--sessionFakeElementColor': `var(${session.color})` }">
           <p class="sessionText" v-show="session.isShowText">{{ session.title }}</p>
+          <p class="sessionText" v-show="session.isShowText">{{ session.durationTime }}</p>
         </div>
       </div>
     </div>
