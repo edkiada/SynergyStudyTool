@@ -27,7 +27,16 @@
   --tagColorGray: hsl(0, 0%, 60%);
   --tagColorTeal: hsl(180, 100%, 60%);
   --tagColorOrange: hsl(30, 100%, 60%);
+  --tagColorRedLight: hsl(0, 100%, 80%);
+  --tagColorGreenLight: hsl(120, 100%, 80%);
+  --tagColorYellowLight: hsl(48, 100%, 80%);
+  --tagColorBlueLight: hsl(208, 100%, 80%);
+  --tagColorPurpleLight: hsl(280, 96%, 80%);
+  --tagColorGrayLight: hsl(0, 0%, 80%);
+  --tagColorTealLight: hsl(180, 100%, 80%);
+  --tagColorOrangeLight: hsl(30, 100%, 80%);
 
+  --lightBlockLight: hsl(240, 11%, 96%);
   --lightBlock: hsl(240, 11%, 96%);
   --lightBlueBtn: hsl(216, 100%, 90%);
 

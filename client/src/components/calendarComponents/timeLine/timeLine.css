@@ -23,9 +23,8 @@
 
 .sessionBlock {
   position: absolute;
-  background-color: var(--white);
-  border: 1px solid var(--Gray850);
-  border-radius: 8px;
+  background-color: var(--sessionColor);
+  border-radius: 4px;
   width: 80%;
   left: 20%;
 }

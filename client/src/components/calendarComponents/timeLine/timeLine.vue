@@ -1,7 +1,9 @@
 <script setup lang="ts">
   import { useFocusStore } from '../../../stores/focusStore';
+  import { useTaskStore } from '../../../stores/taskStore';
   import { computed, onMounted } from 'vue';
   const focusStore = useFocusStore()
+  const taskStore = useTaskStore()
 
   const formatFocusSessions = computed(() => {
     const sessions = focusStore.calendarFocus;
@@ -18,18 +20,23 @@
       const blockHeight = (session.duration / 3600) * HOUR_HEIGHT;
       const show = true ? session.duration >= 600 : false;
       const showText = true ? session.duration >= 1500 : false;
+      const matchingTask = taskStore.tasks.find(task => task.id === session.source.refId);
+      
       return {
         ...session,
         top: `${topPosition}px`,
         height: `${blockHeight}px`,
         isShow: show,
-        isShowText: showText
+        isShowText: showText,
+        title: matchingTask ? matchingTask.title : '',
+        color: matchingTask ? matchingTask.tagColor : '--lightBlock'
       }
     })
   })
 
   onMounted(() => {
     focusStore.fetchFocusSessions()
+    taskStore.fetchTasks()
   })
 
 </script>
@@ -42,8 +49,8 @@
         <div class="test"></div>
       </div>
       <div class="timeLineContent">
-        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height}">
-          <p class="sessionText" v-show="session.isShowText">{{ session.source.taskName }}</p>
+        <div v-for="session in formatFocusSessions" :key="session.id" class="sessionBlock" v-show="session.isShow" :style="{'top': session.top, 'height': session.height, '--sessionColor': `var(${session.color}Light)` }">
+          <p class="sessionText" v-show="session.isShowText">{{ session.title }}</p>
         </div>
       </div>
     </div>
