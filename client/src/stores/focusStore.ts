@@ -22,12 +22,14 @@ interface addFocus {
   }
 }
 
-const API_URL = `http://192.168.0.113:3001/api/focusSession`
+const API_URL = `http://192.168.1.177:3001/api/focusSession`
 
 export const useFocusStore = defineStore('focusStore', {
   state: () => ({
     focusSessions: [] as addFocus[],
-    calendarFocus: [] as FocusSession[]
+    calendarFocus: [] as FocusSession[],
+    curDay: localStorage.getItem('day') || new Date(Date.now()).getDate(),
+    curMonth: localStorage.getItem('month') || new Date(Date.now()).getMonth()
   }),
   actions: {
     async saveFocusSessions(focus: addFocus) {
@@ -43,8 +45,8 @@ export const useFocusStore = defineStore('focusStore', {
         const res = await axios.get(`${API_URL}/calendar`, {
           params: {
             year: 2026,
-            month: 5,
-            day: 11
+            month: this.curMonth,
+            day: this.curDay
           }
         });
         this.calendarFocus = res.data;
