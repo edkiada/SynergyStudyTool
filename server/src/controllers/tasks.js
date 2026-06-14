@@ -50,7 +50,7 @@ const updateTask = async (req, res, next) => {
 const deleteTask = async (req, res, next) => {
   try {
     const task_id = req.params.id
-    const response = await Task.findByIdAndDelete(task_id)
+    const response = await TaskEngineService.deleteWholeTask(task_id)
     if (!response) {
       return res.status(404).json({
         status: 'error',

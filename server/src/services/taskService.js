@@ -1,4 +1,12 @@
+const FocusEngineService = require('./focusService')
+const taskModel = require('../models/task')
+
 class TaskEngineService {
+
+  static async deleteWholeTask(taskId) {
+    await FocusEngineService.deleteFocusSessionByTaskId(taskId);
+    return await taskModel.findByIdAndDelete(taskId);
+  }
 
   static sortTasksByCustom(tasks) {
     const priorityWeights = {
