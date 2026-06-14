@@ -2,6 +2,24 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.74] -2026-6-14
+### feat
+- 將當前calendar日期存儲至pinia `client/src/components/calendarComponents/cHeader/cHeader.vue`, `client/src/stores/focusStore.ts`
+- FocusSession個別刪除和task的聯動 `server/src/controllers/focusSessions.js`, `server/src/models/task.js`, `server/src/routes/focusRouter.js`
+
+### fix
+- 解決刪除任務不會連帶刪除其focusSession問題 `server/src/controllers/tasks.js`, `server/src/services/focusService.js`, `server/src/services/taskService.js`
+
+## [0.0.73] -2026-6-12
+### feat 
+- calendar記錄顯示task title優化 `client/src/components/calendarComponents/timeLine`, `client/src/style.css`
+- calendar記錄顯示task durationTime `client/src/components/calendarComponents/timeLine`
+### style
+- claendar記錄顯示focusSession樣式設計 `client/src/components/calendarComponents/timeLine`
+
+### fix
+- 優化重複focusSession關聯之task title `server/src/models/focusSession.js`, `client/src/stores/focusStore.ts`, `client/src/components/focusComponents/dualTimer/dualTimer.vue`
+
 ## [0.0.72] - 2026-6-11
 ### feat
 - 繪製focus時間並在calendar圖示化 `client/src/components/calendarComponents/timeLine`, `client/src/stores/focusStore.ts`
