@@ -44,6 +44,7 @@ const createFocusSession = async (req, res, next) => {
       const task = await Task.findById(savedFocus.source.refId)
       if (task) {
         task.totalFocusedTime += savedFocus.duration
+        task.focusSession = task.focusSession.concat(savedFocus._id)
         await task.save()
       }
     }
@@ -53,8 +54,24 @@ const createFocusSession = async (req, res, next) => {
   }
 }
 
+const deleteFocusSession = async(req, res, next) => {
+  try {
+    const focusId = req.params.id
+    const response = await findByIdAndDelete(focusID)
+    if(!response) {
+      return res.status(404).json({
+        stsus: 'error',
+        message: 'no focus'
+      })
+    }
+  } catch(error){
+    next(error)
+  }
+}
+
 module.exports = {
   createFocusSession,
   getAllFocusSessions,
-  getCalendarFocusSessions
+  getCalendarFocusSessions,
+  deleteFocusSession
 }

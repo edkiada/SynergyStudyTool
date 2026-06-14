@@ -43,6 +43,12 @@ const taskSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }
+  ],
+  focusSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Focus'
+    }
   ]
 })
 
