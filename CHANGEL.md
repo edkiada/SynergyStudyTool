@@ -2,6 +2,13 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.75]
+### fix 
+- 解決計時器錯誤問題 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
+- 切換計時模式造成錯誤記錄問題 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
+### feat 
+- user schema初始化和controller初始化並新增POST request `server/src/controllers/users.js`, `server/src/models/user.js`, `server/src/routes/usersRouter.js`, `server/src/app.js`
+
 ## [0.0.74] -2026-6-14
 ### feat
 - 將當前calendar日期存儲至pinia `client/src/components/calendarComponents/cHeader/cHeader.vue`, `client/src/stores/focusStore.ts`
