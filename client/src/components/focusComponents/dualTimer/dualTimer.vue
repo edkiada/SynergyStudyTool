@@ -61,7 +61,7 @@
       timerLoop = null;
     }
     if(activeMode.value === 'TimeTracker') {
-      if(taskStore.currentFocusTask !== 'EMPTY') {
+      if(taskStore.currentFocusTask !== 'EMPTY' && countUpSecands.value !== 0) {
         focusStore.saveFocusSessions({
           startTime: new Date(Date.now() - countUpSecands.value * 1000),
           duration: countUpSecands.value,
@@ -73,7 +73,7 @@
         })
       } 
     } else if(activeMode.value === 'FocusBlock') {
-      if(taskStore.currentFocusTask !== 'EMPTY') {
+      if(taskStore.currentFocusTask !== 'EMPTY' && (totalDuration.value - secandsLeft.value) !== 0) {
         focusStore.saveFocusSessions({
           startTime: new Date(Date.now() - (totalDuration.value - secandsLeft.value) * 1000),
           duration: totalDuration.value - secandsLeft.value,
@@ -118,8 +118,8 @@
 
   const switchMode = (mode: string) => {
     if(isRunning.value) return;
+    if(secandsLeft.value !== totalDuration.value || countUpSecands.value !== 0) return;
     activeMode.value = mode;
-    stopTimer();
   }
 </script>
 
