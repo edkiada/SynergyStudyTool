@@ -56,6 +56,10 @@
 
   const stopTimer = () => {
     isRunning.value = false;
+    if (timerLoop) {
+      clearInterval(timerLoop);
+      timerLoop = null;
+    }
     if(activeMode.value === 'TimeTracker') {
       if(taskStore.currentFocusTask !== 'EMPTY') {
         focusStore.saveFocusSessions({
