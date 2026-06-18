@@ -12,6 +12,7 @@ interface Task {
   completedAt?: string;
   tagText: string;
   tagColor: string;
+  userId: string;
   note: string[];
 }
 
@@ -20,9 +21,10 @@ interface NewTaskInput {
   priority: 'low' | 'medium' | 'high';
   tagText: string;
   tagColor: string;
+  userId: string;
 }
 
-const API_URL = 'http://192.168.0.113:3001/api/tasks';
+const API_URL = 'http://192.168.1.177:3001/api/tasks';
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
