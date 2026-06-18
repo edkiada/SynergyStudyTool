@@ -2,7 +2,15 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
-## [0.0.75]
+## [0.0.8] - 2026-6-18
+### feat
+- 新增user對task欄位一對多綁定設計 `server/src/controllers/tasks.js`, `server/src/controllers/users.js`, `server/src/models/task.js`, `server/src/models/user.js`, `server/src/routes/usersRouter.js`
+- 新增user對task欄位一對多綁定設計(前端對應pinia欄位) `client/src/stores/taskStore.ts`
+- 新增使用者頁面(overlay模式) `client/src/components/globalComponents/header`, `client/src/components/globalComponents/userInfo`, `client/src/assets/icons/leftArrow.svg`, `client/src/assets/icons/login.svg`
+### chore
+- 更新jsonwebtoken `server/package-lock.json`
+
+## [0.0.75] - 2026-6-15
 ### fix 
 - 解決計時器錯誤問題 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
 - 切換計時模式造成錯誤記錄問題 `client/src/components/focusComponents/dualTimer/dualTimer.vue`
