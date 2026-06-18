@@ -38,6 +38,7 @@ const taskSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  userId: String,
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
