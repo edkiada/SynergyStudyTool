@@ -1,0 +1,87 @@
+.userOverlay {
+  position: fixed;
+  width: 70%;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 101;
+  background-color: var(--white);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.overlayBG {
+  position: fixed;
+  z-index: 100;
+  background-color: rgb(0 0 0 / 50%);
+  inset: 0;
+}
+
+.closeBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--black);
+  font-size: 1rem;
+  gap: 5px;
+}
+
+.closeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.leftArrow {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.closeBtn {
+  background-color: var(--white);
+}
+
+.userContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  flex-direction: row;
+  border-bottom: 1px solid var(--Gray500);
+  padding-bottom: 1rem;
+}
+
+.userIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  padding: 0.2rem;
+}
+
+.loginBtn {
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+}
+
+.loginContent {
+  display: flex;
+}
+
+.loginText {
+  border-bottom: 1px solid var(--Gray500);
+  width: 100%;
+  text-align: left;
+  padding-bottom: 0.2rem;
+}
+
+.loginPage {
+  z-index: 102;
+}

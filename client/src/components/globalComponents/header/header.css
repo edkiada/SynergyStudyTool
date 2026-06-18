@@ -15,3 +15,7 @@ header {
   color: var(--Gray450);
   font-weight: 500;
 }
+
+.infoBtn {
+  background-color: var(--white);
+}
