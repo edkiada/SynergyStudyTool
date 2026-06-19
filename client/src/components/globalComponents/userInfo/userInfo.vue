@@ -43,6 +43,30 @@
         <p>Info</p>
       </button>
     </div>
+    <form class="loginContent">
+      <div class="userName loginField">
+        <label for="userName" class="inputLabel">UserName</label>
+        <input 
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Input UserName..."
+          class="inputField"
+          required
+        />
+      </div>
+      <div class="password loginField">
+        <label for="password" class="inputLabel">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          class="inputField"
+        />
+      </div>
+      <button type="submit" class="submitBtn">Login</button>
+    </form>
   </section>
   <div class="overlayBG"></div>
 </template>
