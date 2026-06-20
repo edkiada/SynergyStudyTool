@@ -42,6 +42,8 @@
 
   --workDay: hsl(0, 96%, 70%);
   --restDay: hwb(201 60% 70%);
+
+  --ErrorField: hsl(0, 100%, 70%);
 }
 
 * {
