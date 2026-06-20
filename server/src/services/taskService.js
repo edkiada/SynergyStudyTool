@@ -1,14 +1,13 @@
 const FocusEngineService = require('./focusService')
 const taskModel = require('../models/task')
 
-class TaskEngineService {
 
-  static async deleteWholeTask(taskId) {
+  const deleteWholeTask = async (taskId) => {
     await FocusEngineService.deleteFocusSessionByTaskId(taskId);
     return await taskModel.findByIdAndDelete(taskId);
   }
 
-  static sortTasksByCustom(tasks) {
+  const sortTasksByCustom = (tasks) => {
     const priorityWeights = {
       'high': 3,
       'medium': 2,
@@ -31,6 +30,9 @@ class TaskEngineService {
     })
     return sortedResults;
   }
-}
 
-module.exports = TaskEngineService;
+
+module.exports = {
+  deleteWholeTask,
+  sortTasksByCustom
+};
