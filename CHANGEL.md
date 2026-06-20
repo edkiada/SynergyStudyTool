@@ -2,6 +2,13 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.82] -2026-6-20
+### feat
+- Login request(client) `client/src/components/globalComponents/userInfo`, `client/src/stores/userStore.ts`, `client/src/style.css`
+
+### refactor
+- 重構class函數為function `server/src/services`
+
 ## [0.0.81] - 2026-6-19
 ### feat
 - Login頁面表單切版內容 `client/src/components/globalComponents/userInfo`
