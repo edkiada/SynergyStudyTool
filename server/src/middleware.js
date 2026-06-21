@@ -4,7 +4,7 @@ const userService = require('./services/userService')
 const getTokenFrom = request => {
   const authorization = request.get('authorization')
   if(authorization && authorization.startsWith('Bearer ')) {
-    return authorization.replace('Bearer', '')
+    return authorization.replace('Bearer ', '')
   }
   return null
 }
@@ -28,13 +28,14 @@ const userExtractor = async (req, res, next) => {
     const user = await userService.verifyToken(token)
     req.user = user
     req.userId = user.id
+    next()
   } catch(error) {
     next(error)
   }
 }
 
 const errorHandler = (error, req, res, next) => {
-  logger.error(error.massage)
+  logger.error(error.message)
 
   if (error.name === 'CastError') {
     return res.status(400).json({ status: 'error', message: 'ID 格式不正確' });
