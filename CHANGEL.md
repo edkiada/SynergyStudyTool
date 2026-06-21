@@ -2,6 +2,19 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.83] -2026-6-21
+### feat
+- verify token and find user via id `server/src/services/userService.js`, `server/src/middleware.js`
+- update task POST req to carry authorization `client/src/components/globalComponents/userInfo.vue`, `client/src/stores/taskStore.ts`
+- update task POST req to carry authorization `server/src/controllers/tasks.js`, `server/src/routes/tasksRouter.js`
+
+### fix
+- wrong format of getTokenFrom function and forgot next() `server/src/services/userService.js`
+- forgot set error.name `server/src/middleware`
+
+### chore 
+- initial jsconfig.json `server/jsconfig.json`
+
 ## [0.0.82] -2026-6-20
 ### feat
 - Login request(client) `client/src/components/globalComponents/userInfo`, `client/src/stores/userStore.ts`, `client/src/style.css`
