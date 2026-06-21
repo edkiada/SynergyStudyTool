@@ -1,5 +1,4 @@
 const Task = require('../models/task')
-const User = require('../models/user')
 const TaskEngineService = require('../services/taskService')
 
 
@@ -22,14 +21,11 @@ const createTask = async (req, res, next) => {
       priority: body.priority || "medium",
       tagText: body.tagText || "",
       tagColor: body.tagColor || "",
-      userId: body.userId || "",
+      userId: req.user.id,
     })
     const response = await task.save()
-    const user = await User.findById(response.userId)
-    if(user) {
-      user.task = user.task.concat(response._id)
-      await user.save()
-    } 
+    req.user.task = req.user.task.concat(response._id)
+    await req.user.save()
     res.status(201).json(response)
   } catch(error) {
     next(error)
