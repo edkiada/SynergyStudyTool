@@ -24,7 +24,7 @@ interface NewTaskInput {
   userId: string;
 }
 
-const API_URL = 'http://192.168.1.177:3001/api/tasks';
+const API_URL = 'http://192.168.1.146:3001/api/tasks';
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
@@ -45,7 +45,12 @@ export const useTaskStore = defineStore('taskStore', {
     },
     async saveTask(task: NewTaskInput) {
       try {
-        const response = await axios.post(API_URL, task);
+        const token = localStorage.getItem('userToken') || '';
+        const response = await axios.post(API_URL, task, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         this.tasks.push(response.data); // Add the new task to the local state
       } catch (error) {
         console.error("Failed to save task:", error);

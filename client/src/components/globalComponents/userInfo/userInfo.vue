@@ -30,7 +30,10 @@
       password: password.value
     }
     await userStore.loginUser(userLoginData)
-    if(userStore.test) toggleChildPage()
+    if(userStore.test){
+      localStorage.setItem('userToken', userStore.test.token)
+      toggleChildPage()
+    }
     else {
       isError.value = true;
     }
