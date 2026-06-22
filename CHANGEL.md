@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.84] -2026-6-22
+### feat
+- update task GET req to show userTask `client/src/stores/taskStore.ts`, `server/src/controllers/tasks.js`, `server/src/routes/tasksRouter.js`
+- Logout feature `client/src/components/globalComponents/userInfo/userInfo.vue`
+- userInfo localStorage `client/src/components/globalComponents/userInfo/userInfo.vue`, `client/src/stores/userStore.ts`
+### fix
+- clean task list before GET req `client/src/stores/taskStore.ts`
+
 ## [0.0.83] -2026-6-21
 ### feat
 - verify token and find user via id `server/src/services/userService.js`, `server/src/middleware.js`
