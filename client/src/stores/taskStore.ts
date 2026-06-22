@@ -37,6 +37,7 @@ export const useTaskStore = defineStore('taskStore', {
   actions: {
     async fetchTasks() {
       try {
+        this.tasks = [];
         const userStore = useUserStore();
         const token = userStore.test?.token || '';
         const response = await axios.get(API_URL, {
