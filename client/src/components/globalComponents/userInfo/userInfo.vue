@@ -3,7 +3,7 @@
   import userIcon from '../../../assets/icons/user.svg'
   import loginIcon from '../../../assets/icons/login.svg'
   import leftArrow from '../../../assets/icons/leftArrow.svg'
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { useUserStore } from '../../../stores/userStore'
   defineProps({
     open: Boolean
@@ -15,12 +15,20 @@
   const username = ref('')
   const password = ref('')
   const isError = ref(false)
+  const loginBtn = computed(() => {
+    return userStore.test ? 'Logout' : 'Login'
+  })
   const closeOverlay = () => {
     emit('update:open', false)
   }
 
   const toggleChildPage = () => {
-    ischildPageOpen.value = !ischildPageOpen.value;
+    if(loginBtn.value === 'Login') {
+      ischildPageOpen.value = !ischildPageOpen.value;
+    } else {
+      userStore.test = null;
+      localStorage.removeItem('userToken')
+    }
   }
 
   const haddleSubmit = async (event: SubmitEvent) => {
@@ -32,7 +40,7 @@
     await userStore.loginUser(userLoginData)
     if(userStore.test){
       localStorage.setItem('userToken', userStore.test.token)
-      toggleChildPage()
+      ischildPageOpen.value = false
     }
     else {
       isError.value = true;
@@ -57,7 +65,7 @@
     <div class="loginContent">
       <button class="loginBtn" type="button" @click="toggleChildPage">
         <img :src="loginIcon" alt="loginIcon" class="loginIcon">
-        <p class="loginText">Login</p>
+        <p class="loginText">{{ loginBtn }}</p>
       </button>
     </div>
   </section>
