@@ -1,6 +1,7 @@
 // Example: src/stores/taskStore.ts
 import axios from 'axios';
 import { defineStore } from 'pinia';
+import { useUserStore } from './userStore';
 
 interface Task {
   id: string;
@@ -36,8 +37,13 @@ export const useTaskStore = defineStore('taskStore', {
   actions: {
     async fetchTasks() {
       try {
-        // Point this to your actual backend URL
-        const response = await axios.get(API_URL);
+        const userStore = useUserStore();
+        const token = userStore.test?.token || '';
+        const response = await axios.get(API_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         this.tasks = response.data;
       } catch (error) {
         console.error("Connection failed:", error);
@@ -45,7 +51,8 @@ export const useTaskStore = defineStore('taskStore', {
     },
     async saveTask(task: NewTaskInput) {
       try {
-        const token = localStorage.getItem('userToken') || '';
+        const userStore = useUserStore();
+        const token = userStore.test?.token || '';
         const response = await axios.post(API_URL, task, {
           headers: {
             Authorization: `Bearer ${token}`
