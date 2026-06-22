@@ -13,10 +13,20 @@ interface userLogin {
 }
 
 const API_URL = 'http://192.168.1.146:3001/api/login'
+const savedToken = localStorage.getItem('userToken');
+const savedUsername = localStorage.getItem('userName');
+const savedName = localStorage.getItem('name');
+const initialUser: userData | null = (savedToken && savedUsername && savedName) 
+? {
+    token: savedToken,
+    username: savedUsername,
+    name: savedName
+  } 
+  : null;
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
-    test: null as userData | null
+    test: initialUser as userData | null
   }),
   actions: {
     async loginUser(data: userLogin){

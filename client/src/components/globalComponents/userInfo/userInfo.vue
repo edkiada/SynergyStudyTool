@@ -28,6 +28,8 @@
     } else {
       userStore.test = null;
       localStorage.removeItem('userToken')
+      localStorage.removeItem('userName')
+      localStorage.removeItem('name')
     }
   }
 
@@ -40,6 +42,8 @@
     await userStore.loginUser(userLoginData)
     if(userStore.test){
       localStorage.setItem('userToken', userStore.test.token)
+      localStorage.setItem('userName', userStore.test.username)
+      localStorage.setItem('name', userStore.test.name)
       ischildPageOpen.value = false
     }
     else {
