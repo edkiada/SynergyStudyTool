@@ -2,6 +2,12 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.85] -2026-6-25
+### fix
+- reloading taskList after login and logout `client/src/components/globalComponents/userInfo/userInfo.vue`
+- add UserInfo to calendar header `client/src/components/calendarComponents/cHeader`
+- add expires to Token `server/src/controllers/login.js`
+
 ## [0.0.84] -2026-6-22
 ### feat
 - update task GET req to show userTask `client/src/stores/taskStore.ts`, `server/src/controllers/tasks.js`, `server/src/routes/tasksRouter.js`
