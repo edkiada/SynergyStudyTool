@@ -76,3 +76,7 @@ header {
   border: none;
   background-color: var(--white);
 }
+
+.infoBtn {
+  background-color: var(--white);
+}

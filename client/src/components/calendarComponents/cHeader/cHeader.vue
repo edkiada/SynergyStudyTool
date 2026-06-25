@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed, ref, onMounted } from 'vue';
   import userIcon from '../../../assets/icons/user.svg'
+  import userInfo from '../../globalComponents/userInfo/userInfo.vue'
   import { useFocusStore } from '../../../stores/focusStore';
   const today = new Date()
   const currentMonth = computed(() => today.getMonth())
@@ -8,6 +9,7 @@
   const daylist = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const monthlist = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const isOverlayOpen = ref(false)
+  const userInfoOpen = ref(false);
   const datelist = ref<number[][]>(
     Array.from({ length: 6}, () => Array.from({ length: 7}, () => 0))
   )
@@ -18,6 +20,10 @@
 
   const toggleOverlay = () => {
     isOverlayOpen.value = !isOverlayOpen.value;
+  }
+
+  const openUserInfo = () => {
+    userInfoOpen.value = true;
   }
 
   const updateSelectDay = (day: number) => {
@@ -53,7 +59,8 @@
       <h1>Calendar</h1>
       <button type="button" class="currentDateBtn" @click="toggleOverlay"><p>{{ focusStore.curDay }} {{ monthlist[currentMonth] }}</p></button>
     </div>
-    <img :src="userIcon" alt="userIcon" class="userIcon">
+    <button class="infoBtn" type="button" @click="openUserInfo()"><img :src="userIcon" alt="userIcon" class="userIcon"></button>
+    <userInfo v-model:open="userInfoOpen" v-if="userInfoOpen"/>
     <div class="overlay" v-show="isOverlayOpen">
       <p class="monthText">{{ monthlist[currentMonth] }}</p>
       <div class="dateRow">
