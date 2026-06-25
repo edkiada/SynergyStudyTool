@@ -5,6 +5,7 @@
   import leftArrow from '../../../assets/icons/leftArrow.svg'
   import { ref, computed } from 'vue'
   import { useUserStore } from '../../../stores/userStore'
+  import { useTaskStore } from '../../../stores/taskStore'
   defineProps({
     open: Boolean
   })
@@ -12,6 +13,7 @@
   const emit = defineEmits(['update:open'])
   const ischildPageOpen = ref(false)
   const userStore = useUserStore();
+  const taskStore = useTaskStore();
   const username = ref('')
   const password = ref('')
   const isError = ref(false)
@@ -30,6 +32,7 @@
       localStorage.removeItem('userToken')
       localStorage.removeItem('userName')
       localStorage.removeItem('name')
+      taskStore.fetchTasks()
     }
   }
 
@@ -44,6 +47,7 @@
       localStorage.setItem('userToken', userStore.test.token)
       localStorage.setItem('userName', userStore.test.username)
       localStorage.setItem('name', userStore.test.name)
+      taskStore.fetchTasks()
       ischildPageOpen.value = false
     }
     else {
