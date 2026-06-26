@@ -2,6 +2,14 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.86] -2026-6-26
+### feat
+- add hint text for loading status `client/src/components/taskComponents/taskContent/taskContent.vue`, `client/src/stores/taskStore.ts`
+
+### fix
+- add hint text for unlogin status `client/src/components/taskComponents/addTask/addTask.vue`, `client/src/components/taskComponents/taskContent`
+- delete userId field for addTask req `client/src/stores/taskStore.ts`
+
 ## [0.0.85] -2026-6-25
 ### fix
 - reloading taskList after login and logout `client/src/components/globalComponents/userInfo/userInfo.vue`
