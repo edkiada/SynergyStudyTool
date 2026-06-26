@@ -22,7 +22,6 @@ interface NewTaskInput {
   priority: 'low' | 'medium' | 'high';
   tagText: string;
   tagColor: string;
-  userId: string;
 }
 
 const API_URL = 'http://192.168.1.146:3001/api/tasks';
