@@ -29,6 +29,7 @@ const API_URL = 'http://192.168.1.146:3001/api/tasks';
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [] as Task[],
+    isloading: false,
     currentFocusTask: localStorage.getItem('precentFocusTask') || '',
     currentTaskPrioirty: localStorage.getItem('precentTaskPrioirty') || '',
     currentTaskId: localStorage.getItem('precentTaskId') || '',
@@ -36,6 +37,7 @@ export const useTaskStore = defineStore('taskStore', {
   actions: {
     async fetchTasks() {
       try {
+        this.isloading = true;
         this.tasks = [];
         const userStore = useUserStore();
         const token = userStore.test?.token || '';
@@ -47,10 +49,13 @@ export const useTaskStore = defineStore('taskStore', {
         this.tasks = response.data;
       } catch (error) {
         console.error("Connection failed:", error);
+      } finally {
+        this.isloading = false;
       }
     },
     async saveTask(task: NewTaskInput) {
       try {
+        this.isloading = true;
         const userStore = useUserStore();
         const token = userStore.test?.token || '';
         const response = await axios.post(API_URL, task, {
@@ -61,10 +66,13 @@ export const useTaskStore = defineStore('taskStore', {
         this.tasks.push(response.data); // Add the new task to the local state
       } catch (error) {
         console.error("Failed to save task:", error);
+      } finally {
+        this.isloading = false;
       }
     },
     async deleteTask(taskId: string) {
       try {
+        this.isloading = true;
         await axios.delete(`${API_URL}/${taskId}`);
         if(this.currentTaskId === taskId) {
           this.currentFocusTask = 'EMPTY';
@@ -77,10 +85,13 @@ export const useTaskStore = defineStore('taskStore', {
         await this.fetchTasks(); 
       } catch (error) {
         console.error("Failed to delete task:", error);
+      } finally {
+        this.isloading = false;
       }
     }, 
     async toggleTaskstatus(taskId: string, currentStatus: 'pending' | 'completed') {
       try {
+        this.isloading = true;
         const newStatus = currentStatus === 'pending' ? 'completed' : 'pending';
         
         const task = this.tasks.find(t => t.id === taskId);
@@ -93,6 +104,8 @@ export const useTaskStore = defineStore('taskStore', {
       } catch(error) {
         console.error("Failed to toggle task status:", error);
         await this.fetchTasks();
+      } finally {
+        this.isloading = false;
       }
     }
   }

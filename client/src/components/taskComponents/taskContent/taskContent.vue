@@ -58,32 +58,40 @@
 
 <template>
   <section class="taskContent">
-    <div v-for="(item, index) in dataStore.tasks" :key="index" class="temp" v-if="userStore.test">
-      <div class="taskItem" :class="{ 'swipped' : item.isSwiped }"@touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event, item)">
-        <div class="task">
-          <button type="button" class="checkBtn" @click="dataStore.toggleTaskstatus(item.id, item.status)" :class="{ 'checkBtnCompleted' : item.status === 'completed' }"><img :src="tick" v-if="item.status === 'completed'"></button>
-          <div class="taskText" :class="{ 'taskCompleted' : item.status === 'completed' }" >
-            <p>{{ item.title }}</p>
-            <div class="taskLabel">
-              <p class="itemPriority" :class="priorityColorClass(item.priority)">{{ item.priority }}</p>
-              <p class="itemTag" v-if="item.tagText" :style="{ color : `var(${item.tagColor})`, '--tagColor': `var(${item.tagColor})`}">{{ item.tagText }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="focusBtnItem" :class="{ 'focusBtnCompleted' : item.status === 'completed' }" >
-          <RouterLink to="/focus">
-            <button type="button" class="focusBtn" @click="startFocus(item)"><img :src="clock"></button>
-          </RouterLink>
-          <p class="focusText">start</p>
-        </div>
-      </div>
-      <div class="deleteBtnItem">
-        <button type="button" class="deleteBtn" @touchstart.stop @click.stop="deleteTask(item)">Delete</button>
-      </div>
+    <div class="hint" v-if="dataStore.isloading">
+      <h2>Loading...</h2>
     </div>
-    <div class="hint" v-else>
+    <div class="hint" v-else-if="!userStore.test">
       <h2>Login to continue</h2>
     </div>
+    <div class="hint" v-else-if="dataStore.tasks.length === 0">
+      <h2>Loading...</h2>
+    </div>
+    <template v-else>
+      <div v-for="(item, index) in dataStore.tasks" :key="index" class="temp">
+        <div class="taskItem" :class="{ 'swipped' : item.isSwiped }"@touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event, item)">
+          <div class="task">
+            <button type="button" class="checkBtn" @click="dataStore.toggleTaskstatus(item.id, item.status)" :class="{ 'checkBtnCompleted' : item.status === 'completed' }"><img :src="tick" v-if="item.status === 'completed'"></button>
+            <div class="taskText" :class="{ 'taskCompleted' : item.status === 'completed' }" >
+              <p>{{ item.title }}</p>
+              <div class="taskLabel">
+                <p class="itemPriority" :class="priorityColorClass(item.priority)">{{ item.priority }}</p>
+                <p class="itemTag" v-if="item.tagText" :style="{ color : `var(${item.tagColor})`, '--tagColor': `var(${item.tagColor})`}">{{ item.tagText }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="focusBtnItem" :class="{ 'focusBtnCompleted' : item.status === 'completed' }" >
+            <RouterLink to="/focus">
+              <button type="button" class="focusBtn" @click="startFocus(item)"><img :src="clock"></button>
+            </RouterLink>
+            <p class="focusText">start</p>
+          </div>
+        </div>
+        <div class="deleteBtnItem">
+          <button type="button" class="deleteBtn" @touchstart.stop @click.stop="deleteTask(item)">Delete</button>
+        </div>
+      </div>
+    </template>
   </section>
 </template>
 
