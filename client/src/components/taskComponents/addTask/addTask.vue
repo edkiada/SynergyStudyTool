@@ -6,8 +6,10 @@
   import flag from "../../../assets/icons/flag.svg"
   import tag from "../../../assets/icons/tag.svg"
   import { useTaskStore } from '../../../stores/taskStore';
+  import { useUserStore } from '../../../stores/userStore';
 
   const taskStore = useTaskStore();
+  const userStore = useUserStore();
   const isModalOpen = ref(false);
   const ispameraterOpen = ref(false);
   const isColorPickerOpen = ref(false);
@@ -68,7 +70,7 @@
 </script>
 
 <template>
-  <section class="addTaskContainer">
+  <section class="addTaskContainer" v-if="userStore.test">
     <button @click="handleModal" class="addTaskBtn"><img :src="addBtn" alt="addBtn"></button>
     <Teleport to="body">
       <div class="overlay" v-if="isModalOpen">

@@ -1,11 +1,13 @@
 <script setup lang="ts">
   import { useTaskStore } from '../../../stores/taskStore';
   import { useMainStore } from '../../../stores/mainStore';
+  import { useUserStore } from '../../../stores/userStore';
   import { onMounted } from 'vue';
   import clock from "../../../assets/icons/clock.svg"
   import tick from "../../../assets/icons/tick.svg"
   const dataStore = useTaskStore();
   const mainStore = useMainStore();
+  const userStore = useUserStore();
 
   onMounted(() => {
     dataStore.fetchTasks();
@@ -56,7 +58,7 @@
 
 <template>
   <section class="taskContent">
-    <div v-for="(item, index) in dataStore.tasks" :key="index" class="temp">
+    <div v-for="(item, index) in dataStore.tasks" :key="index" class="temp" v-if="userStore.test">
       <div class="taskItem" :class="{ 'swipped' : item.isSwiped }"@touchstart="handleTouchStart($event)" @touchend="handleTouchEnd($event, item)">
         <div class="task">
           <button type="button" class="checkBtn" @click="dataStore.toggleTaskstatus(item.id, item.status)" :class="{ 'checkBtnCompleted' : item.status === 'completed' }"><img :src="tick" v-if="item.status === 'completed'"></button>
@@ -78,6 +80,9 @@
       <div class="deleteBtnItem">
         <button type="button" class="deleteBtn" @touchstart.stop @click.stop="deleteTask(item)">Delete</button>
       </div>
+    </div>
+    <div class="hint" v-else>
+      <h2>Login to continue</h2>
     </div>
   </section>
 </template>

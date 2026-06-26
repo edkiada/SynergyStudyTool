@@ -141,3 +141,11 @@
   color: var(--Gray500);
   text-decoration: none;
 }
+
+.hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25vh;
+  color: var(--Gray500);
+}
