@@ -20,6 +20,7 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(express.static('dist'))
 app.use('/api/tasks', tasksRouter)
 app.use('/api/notes', notesRouter)
 app.use('/api/focusSession', focusRouter)
