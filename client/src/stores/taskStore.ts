@@ -24,7 +24,8 @@ interface NewTaskInput {
   tagColor: string;
 }
 
-const API_URL = 'http://192.168.1.146:3001/api/tasks';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = `${BASE_URL}/tasks`;
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({

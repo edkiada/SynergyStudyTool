@@ -22,7 +22,8 @@ interface addFocus {
   }
 }
 
-const API_URL = `http://192.168.1.177:3001/api/focusSession`
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = `${BASE_URL}/focusSession`;
 
 export const useFocusStore = defineStore('focusStore', {
   state: () => ({

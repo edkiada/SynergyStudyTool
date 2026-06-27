@@ -12,7 +12,8 @@ interface userLogin {
   password: string
 }
 
-const API_URL = 'http://192.168.1.146:3001/api/login'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = `${BASE_URL}/login`;
 const savedToken = localStorage.getItem('userToken');
 const savedUsername = localStorage.getItem('userName');
 const savedName = localStorage.getItem('name');
