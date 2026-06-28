@@ -54,7 +54,6 @@
 
 .swipped {
   transform: translateX(-55px);
-  transition: 0.5s;
 }
 
 .temp {
