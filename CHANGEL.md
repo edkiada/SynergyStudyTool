@@ -2,6 +2,17 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.9] -2026-6-27
+### feat
+- build fronted as dist `server/dist`
+- new .env `client/.env.development`, `client/.env.production`
+- update api path `client/src/stores/focusStore.ts`, `client/src/stores/taskStore.ts`, `client/src/stores/userStore.ts`
+- add prod env `server/package.json`, `server/src/config/db.js`, `server/src/config/env.js`
+
+### fix
+- rename `server/src/routes/taskRouter.js`
+- lost `server/src/routes/tasksRouter.js`
+
 ## [0.0.86] -2026-6-26
 ### feat
 - add hint text for loading status `client/src/components/taskComponents/taskContent/taskContent.vue`, `client/src/stores/taskStore.ts`
