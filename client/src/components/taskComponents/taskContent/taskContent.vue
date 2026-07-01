@@ -40,9 +40,12 @@
     }
   }
 
-  const deleteTask = (item: any) => {
-    dataStore.deleteTask(item.id);
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const deleteTask = async (item: any) => {
     item.isSwiped = false;
+    await sleep(500);
+    dataStore.deleteTask(item.id);
   }
 
   const startFocus = (item: any) => {

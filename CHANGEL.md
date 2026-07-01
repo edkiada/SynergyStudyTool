@@ -2,6 +2,18 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.92] -2026-7-01
+### feat
+- add filter for completed test `server/src/services/taskService.js`, `server/src/controllers/tasks.js`
+- clear current focus if completed `client/src/stores/taskStore.ts`
+### refactor
+- remove test consolelog `server/src/config/db.js`
+
+## [0.0.91] -2026-6-28
+### fix
+- calendar index-z problem `client/src/components/calendarComponents/cHeader/cHeader.css`
+- task delete but remains problem `client/src/components/taskComponents/taskContent`
+
 ## [0.0.9] -2026-6-27
 ### feat
 - build fronted as dist `server/dist`

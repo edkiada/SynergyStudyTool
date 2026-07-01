@@ -99,6 +99,14 @@ export const useTaskStore = defineStore('taskStore', {
         if(task) {
           task.status = newStatus;
           task.completedAt = newStatus === 'completed' ? new Date().toISOString() : undefined;
+          if(this.currentTaskId === taskId) {
+            this.currentFocusTask = 'EMPTY';
+            this.currentTaskPrioirty = 'low';
+            this.currentTaskId = '';
+            localStorage.setItem('precentFocusTask', 'EMPTY');
+            localStorage.setItem('precentTaskPrioirty', 'low');
+            localStorage.setItem('precentTaskId', '');
+          }
         }
         await axios.put(`${API_URL}/${taskId}`, { status: newStatus });
         await this.fetchTasks();

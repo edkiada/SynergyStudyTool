@@ -5,12 +5,7 @@ const TaskEngineService = require('../services/taskService')
 const getAllTasks = async (req, res, next) => {
   try {
     const curUserId = req.userId || ''
-    let tasks = null;
-    if(curUserId) {
-      tasks = await Task.find({ userId: curUserId })
-    } else {
-      tasks = await Task.find({})
-    }
+    const tasks = await TaskEngineService.clearCompletedTask(curUserId);
     const sortedTasks = TaskEngineService.sortTasksByCustom(tasks);
     res.json(sortedTasks)
   } catch(error) {
