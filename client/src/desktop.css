@@ -1,0 +1,48 @@
+header {
+  margin: 5vh auto;
+}
+main {
+  border-top: 1px solid var(--Gray500);
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  min-height: 65vh;
+  margin: 2vh auto;
+}
+
+.switchBtnList {
+  display: flex;
+}
+
+.focusMode {
+  border-right: 1px solid var(--Gray500);
+}
+
+.timeMode {
+  border-right: 1px solid var(--Gray500);
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.switchBtn {
+  background-color: var(--white);
+  border: none;
+  padding: 0.5rem;
+  width: 5rem;
+  border: 1px solid var(--Gray500);
+}
+
+.leftBtn {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.rightBtn {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

@@ -4,6 +4,8 @@
   flex-direction: column;
   height: 50vh;
   overflow-y: auto;
+  max-width: 768px;
+  min-width: 393px;
 }
 
 .taskItem {

@@ -2,6 +2,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 2rem;
+  max-width: 768px;
 }
 
 .date {
