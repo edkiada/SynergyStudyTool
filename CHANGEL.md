@@ -2,6 +2,13 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.0.93] -2026-7-06
+### feat
+- RWD design on desktop `client/src/components`, `client/src/view/desktopView.vue`, `client/src/App.vue`
+- desktop css `client/src/desktop.css`
+### chore
+- vueuse/core `client/package-lock.json`, `client/package.json`
+
 ## [0.0.92] -2026-7-01
 ### feat
 - add filter for completed test `server/src/services/taskService.js`, `server/src/controllers/tasks.js`
