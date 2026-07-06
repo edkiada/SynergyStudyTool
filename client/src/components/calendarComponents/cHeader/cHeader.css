@@ -3,6 +3,7 @@ header {
   justify-content: space-between;
   margin: 2rem;
   position: relative;
+  max-width: 768px;
 }
 
 .date {
