@@ -32,6 +32,8 @@
       localStorage.removeItem('userToken')
       localStorage.removeItem('userName')
       localStorage.removeItem('name')
+      username.value = '';
+      password.value = '';
       taskStore.fetchTasks()
     }
   }
@@ -63,7 +65,7 @@
 <template>
   <section class="userOverlay">
     <div class="closeContent">
-      <button class="closeBtn" type="button" @click="closeOverlay"><img :src="closeIcon" class="closeIcon" alt="closeIcon"></button>
+      <button class="closeBtn Btn" type="button" @click="closeOverlay"><img :src="closeIcon" class="closeIcon" alt="closeIcon"></button>
     </div>
     <div class="userContent">
       <img :src="userIcon" alt="userIcon" class="userIcon"/>
@@ -71,7 +73,7 @@
       <p v-else>UserName</p>
     </div>
     <div class="loginContent">
-      <button class="loginBtn" type="button" @click="toggleChildPage">
+      <button class="loginBtn Btn" type="button" @click="toggleChildPage">
         <img :src="loginIcon" alt="loginIcon" class="loginIcon">
         <p class="loginText">{{ loginBtn }}</p>
       </button>
@@ -79,7 +81,7 @@
   </section>
   <section class="userOverlay " v-if="ischildPageOpen">
     <div class="closeContent">
-      <button class="closeBtn" type="button" @click="toggleChildPage">
+      <button class="closeBtn Btn" type="button" @click="toggleChildPage">
         <img :src="leftArrow" class="leftArrow" alt="leftArrow">
         <p>Info</p>
       </button>
@@ -92,7 +94,6 @@
           id="userName"
           name="username"
           v-model="username"
-          placeholder="Input UserName..."
           class="inputField"
           required
           :class="{'isError' : isError}"
@@ -112,7 +113,7 @@
           @click="typing"
         />
       </div>
-      <button type="submit" class="submitBtn">Login</button>
+      <button type="submit" class="submitBtn Btn">Login</button>
     </form>
   </section>
   <div class="overlayBG"></div>
