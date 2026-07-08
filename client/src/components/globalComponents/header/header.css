@@ -19,4 +19,5 @@ header {
 
 .infoBtn {
   background-color: var(--white);
+  border: none;
 }
