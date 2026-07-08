@@ -61,3 +61,10 @@ body {
   position: fixed;
   overscroll-behavior: none;
 }
+
+@media (hover: hover) {
+  button:hover {
+    cursor: pointer;
+    filter: opacity(0.7);
+  }
+}
