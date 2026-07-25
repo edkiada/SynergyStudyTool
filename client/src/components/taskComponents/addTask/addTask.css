@@ -202,3 +202,19 @@
   height: 1.3rem;
   border-radius: 50%;
 }
+
+
+@media (min-width: 768px) {
+  .overlay {
+    width: 40%;
+    top: 20%;
+    left: 30%;
+    height: 60%;
+    border-radius: 8px;
+    box-shadow: 0 0 5px var(--Gray450);
+  }
+  .keybordOpen {
+    margin-bottom: 0px;
+    transition: padding-bottom 0.2s ease-out;
+  }
+}
