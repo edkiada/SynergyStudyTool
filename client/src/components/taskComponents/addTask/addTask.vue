@@ -17,7 +17,7 @@
   const tasktitle = ref('');
   const tagText = ref('');
   const selectedPriority = ref<'low' | 'medium' | 'high'>('medium');
-  const selectedColor = ref('--tagColorRed');
+  const selectedColor = ref('--Gray850');
   const themeColor = [
     '--tagColorRed',
     '--tagColorGreen',
