@@ -2,6 +2,11 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.1.0] -2026-8-9
+### feat
+- AI summary create `client` (completely prompt create)
+- AI summary create `server` (completely prompt create)
+
 ## [0.0.95] -2026-7-25
 ### feat
 - update addTask display on window mode `client/src/components/taskComponents/addTask/addTask.css`
