@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/genai": "^2.16.0",
     "@vueuse/core": "^14.3.0",
     "axios": "^1.16.0",
     "pinia": "^3.0.4",

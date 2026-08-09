@@ -14,6 +14,20 @@ main {
   display: flex;
 }
 
+.leftNavbar {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.AI_analystBtn {
+  border-radius: 8px;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  background-color: var(--white);
+  border: 1px solid var(--Gray500);
+}
+
 .focusMode {
   border-right: 1px solid var(--Gray500);
 }

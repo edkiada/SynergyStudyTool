@@ -8,12 +8,21 @@
   import dualTimer from '../components/focusComponents/dualTimer/dualTimer.vue'
   import focusTask from '../components/focusComponents/focusTask/focusTask.vue'
   import Header from '../components/globalComponents/header/header.vue'
+  import { useAiAnalysisStore } from '../stores/aiAnalysisStore'
+  import aiAnalysisOverlay from '../components/desktopComponents/aiAnalysisOverlay/aiAnalysisOverlay.vue'
   const mainStore = useMainStore()
+  const aiAnalysisStore = useAiAnalysisStore()
 
   const Mode = ref('time');
+  const isAiOverlayOpen = ref(false);
 
   const switchMode = (mode: string) => {
     Mode.value = mode;
+  }
+
+  const openAiAnalysis = async () => {
+    isAiOverlayOpen.value = true;
+    await aiAnalysisStore.fetchTodayAnalysis();
   }
 
   onMounted(() => {
@@ -30,9 +39,14 @@
   </header>
   <main>
     <div class="leftContainer">
-      <div class="switchBtnList">
-        <button class="switchBtn leftBtn" type="button" @click="switchMode('focus')" :class="{ 'selectedBtn': Mode === 'focus'}">Focus</button>
-        <button class="switchBtn rightBtn" type="button" @click="switchMode('time')" :class="{ 'selectedBtn': Mode === 'time'}">Calendar</button>
+      <div class="leftNavbar">
+        <div class="switchBtnList">
+          <button class="switchBtn leftBtn" type="button" @click="switchMode('focus')" :class="{ 'selectedBtn': Mode === 'focus'}">Focus</button>
+          <button class="switchBtn rightBtn" type="button" @click="switchMode('time')" :class="{ 'selectedBtn': Mode === 'time'}">Calendar</button>
+        </div>
+        <button class="AI_analystBtn" type="button" @click="openAiAnalysis">
+          {{ aiAnalysisStore.isLoading ? 'Analyzing...' : 'AI summary' }}
+        </button>
       </div>
       <div class="focusMode" v-if="Mode === 'focus'">
         <dualTimer />
@@ -47,6 +61,7 @@
       <addTask />
     </div>
   </main>
+  <aiAnalysisOverlay v-model:open="isAiOverlayOpen" />
 </template>
 
 <style scoped>
