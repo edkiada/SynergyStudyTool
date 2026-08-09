@@ -124,9 +124,23 @@
   animation: shake 0.2s ease-in-out 0s 2;
 }
 
+.Btn {
+  border: none;
+}
+
 @keyframes shake {
   0% { transform: translateX(0);}
   25% { transform: translateX(-5px);}
   50% { transform: translateX(0);}
   75% { transform: translate(5px);}
+}
+
+@media (min-width: 768px) {
+  .userOverlay {
+    width: 30%;
+    top: 25%;
+    left: 35%;
+    height: 50%;
+    border-radius: 8px;
+  }
 }

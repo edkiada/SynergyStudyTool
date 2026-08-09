@@ -31,8 +31,8 @@
   <main>
     <div class="leftContainer">
       <div class="switchBtnList">
-        <button class="switchBtn leftBtn" type="button" @click="switchMode('focus')">Focus</button>
-        <button class="switchBtn rightBtn" type="button" @click="switchMode('time')">Calendar</button>
+        <button class="switchBtn leftBtn" type="button" @click="switchMode('focus')" :class="{ 'selectedBtn': Mode === 'focus'}">Focus</button>
+        <button class="switchBtn rightBtn" type="button" @click="switchMode('time')" :class="{ 'selectedBtn': Mode === 'time'}">Calendar</button>
       </div>
       <div class="focusMode" v-if="Mode === 'focus'">
         <dualTimer />
