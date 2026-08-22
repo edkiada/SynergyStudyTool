@@ -6,19 +6,27 @@ const config = require('../config/env')
 const getTodayRange = () => {
   const start = new Date()
   start.setHours(0, 0, 0, 0)
-
   const end = new Date()
   end.setHours(23, 59, 59, 999)
-
   return { start, end }
 }
 
-const extractJson = (text) => {
+// 防禦型 JSON 解析函式
+const extractJson = (input) => {
+  // 1. 若已經是物件，直接回傳
+  if (typeof input === 'object' && input !== null) {
+    return input
+  }
+
+  // 2. 安全轉型為字串，防止 undefined/null 呼叫 .replace 崩潰
+  const text = typeof input === 'string' ? input : String(input || '')
+
   try {
     return JSON.parse(text)
-  } catch(error) {
-    const match = text.match(/\{[\s\S]*\}/)
-    if(match) {
+  } catch (error) {
+    const cleanText = text.replace(/```json|```/g, '').trim()
+    const match = cleanText.match(/\{[\s\S]*\}/)
+    if (match) {
       return JSON.parse(match[0])
     }
     throw error
@@ -41,97 +49,73 @@ const createEmptyAnalysis = () => ({
 
 const getAiAnalysis = async (req, res, next) => {
   try {
-    if(!config.GEMINI_API_KEY) {
-      return res.status(500).json({ error: 'GEMINI_API_KEY is missing' })
+    if (!config.CLOUDFLARE_ACCOUNT_ID || !config.CLOUDFLARE_API_TOKEN) {
+      return res.status(500).json({ error: 'Cloudflare credentials are missing in env' })
     }
 
     const userId = req.userId
     const { start, end } = getTodayRange()
 
-    const [allTasks, createdTodayTasks, completedTodayTasks, focusSessions, notes] = await Promise.all([
+    const [allTasks, completedTodayTasks, focusSessions, notes] = await Promise.all([
       Task.find({ userId }),
-      Task.find({
-        userId,
-        _id: { $exists: true }
-      }),
-      Task.find({
-        userId,
-        completedAt: { $gte: start, $lte: end }
-      }),
-      FocusSession.find({
-        startTime: { $gte: start, $lte: end }
-      }),
-      Note.find({})
+      Task.find({ userId, completedAt: { $gte: start, $lte: end } }),
+      FocusSession.find({ userId, startTime: { $gte: start, $lte: end } }),
+      Note.find({ userId })
     ])
 
     const taskIds = new Set(allTasks.map(task => task._id.toString()))
+    
     const todayFocusSessions = focusSessions.filter(session => {
       const refId = session.source?.refId?.toString()
       return session.source?.type === 'independent' || taskIds.has(refId)
     })
+    
     const taskNotes = notes.filter(note => {
       const refId = note.source?.refId?.toString()
       return taskIds.has(refId)
     })
 
-    const createdToday = createdTodayTasks.filter(task => {
+    const createdToday = allTasks.filter(task => {
       const createdAt = task._id.getTimestamp()
       return createdAt >= start && createdAt <= end
     })
 
+    const todayActiveTasks = allTasks.filter(task => {
+      const createdAt = task._id.getTimestamp()
+      const isCreatedToday = createdAt >= start && createdAt <= end
+      const isCompletedToday = task.completedAt && task.completedAt >= start && task.completedAt <= end
+      const isInProgress = task.status === 'in_progress'
+      return isCreatedToday || isCompletedToday || isInProgress
+    })
+
     const summaryData = {
-      dateRange: {
-        start,
-        end
-      },
-      user: {
-        id: req.user.id,
-        username: req.user.username,
-        name: req.user.name
-      },
       metrics: {
         totalTaskCount: allTasks.length,
         createdTodayTaskCount: createdToday.length,
         completedTodayTaskCount: completedTodayTasks.length,
         pendingTaskCount: allTasks.filter(task => task.status === 'pending').length,
         inProgressTaskCount: allTasks.filter(task => task.status === 'in_progress').length,
-        archivedTaskCount: allTasks.filter(task => task.status === 'archived').length,
-        totalFocusSecondsToday: todayFocusSessions.reduce((sum, session) => sum + session.duration, 0),
-        totalFocusMinutesToday: Math.round(todayFocusSessions.reduce((sum, session) => sum + session.duration, 0) / 60),
+        totalFocusMinutesToday: Math.round(todayFocusSessions.reduce((sum, session) => sum + (session.duration || 0), 0) / 60),
         focusSessionCountToday: todayFocusSessions.length,
         noteCount: taskNotes.length
       },
-      tasks: allTasks.map(task => ({
-        id: task._id,
+      todayTasks: todayActiveTasks.map(task => ({
         title: task.title,
         priority: task.priority,
-        status: task.status,
-        tagText: task.tagText,
-        completedAt: task.completedAt,
-        createdAt: task._id.getTimestamp(),
-        totalFocusedTime: task.totalFocusedTime
+        status: task.status
       })),
-      focusSessions: todayFocusSessions.map(session => ({
-        id: session._id,
-        startTime: session.startTime,
-        duration: session.duration,
-        source: session.source
-      })),
-      notes: taskNotes.map(note => ({
-        id: note._id,
-        title: note.title,
-        content: note.content,
-        source: note.source
+      todayFocusSessions: todayFocusSessions.map(session => ({
+        durationMinutes: Math.round((session.duration || 0) / 60)
       }))
     }
 
     const hasNoTodayData =
       summaryData.metrics.createdTodayTaskCount === 0 &&
       summaryData.metrics.completedTodayTaskCount === 0 &&
-      summaryData.metrics.totalFocusSecondsToday === 0 &&
+      summaryData.metrics.totalFocusMinutesToday === 0 &&
       summaryData.metrics.noteCount === 0
 
-    if(hasNoTodayData) {
+    if (hasNoTodayData) {
       return res.status(200).json({
         analysis: createEmptyAnalysis(),
         sourceData: summaryData,
@@ -140,7 +124,7 @@ const getAiAnalysis = async (req, res, next) => {
     }
 
     const prompt = `
-你是一個學習與專注助理。請根據以下資料分析使用者今天的狀態，輸出繁體中文 JSON，不要輸出 markdown。
+你是一個學習與專注助理。請根據以下資料分析使用者今天的狀態，輸出繁體中文 JSON，不要輸出任何 markdown 或其他額外文字。
 
 JSON schema:
 {
@@ -161,36 +145,41 @@ JSON schema:
 ${JSON.stringify(summaryData, null, 2)}
 `
 
-    const geminiResponse = await fetch('https://generativelanguage.googleapis.com/v1beta/interactions', {
+    const modelName = '@cf/meta/llama-3.1-8b-instruct'
+    const cfUrl = `https://api.cloudflare.com/client/v4/accounts/${config.CLOUDFLARE_ACCOUNT_ID}/ai/run/${modelName}`
+
+    const cfResponse = await fetch(cfUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': config.GEMINI_API_KEY
+        'Authorization': `Bearer ${config.CLOUDFLARE_API_TOKEN}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'gemini-3.6-flash',
-        input: prompt
+        messages: [
+          { role: 'system', content: 'You are a helpful assistant that outputs only valid JSON.' },
+          { role: 'user', content: prompt }
+        ]
       })
     })
 
-    if(!geminiResponse.ok) {
-      const errorText = await geminiResponse.text()
-      return res.status(502).json({
-        error: 'Gemini API request failed',
-        detail: errorText
-      })
+    if (!cfResponse.ok) {
+      const errorText = await cfResponse.text()
+      console.error('[Cloudflare AI Error]', errorText)
+      return res.status(502).json({ error: 'Cloudflare Workers AI request failed', detail: errorText })
     }
 
-    const geminiData = await geminiResponse.json()
-    const text = geminiData.output_text || '{}'
-    const analysis = extractJson(text)
+    const cfData = await cfResponse.json()
+    
+    // 安全提取 response 欄位，確保為非 null/undefined 的型別
+    const rawText = cfData.result?.response ?? '{}'
+    const analysis = extractJson(rawText)
 
-    res.status(200).json({
+    return res.status(200).json({
       analysis,
       sourceData: summaryData,
-      raw: geminiData
+      raw: cfData
     })
-  } catch(error) {
+  } catch (error) {
     next(error)
   }
 }
