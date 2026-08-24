@@ -1,5 +1,6 @@
 const logger = require('./utils/logger')
 const userService = require('./services/userService')
+const rateLimit = require('express-rate-limit')
 
 const getTokenFrom = request => {
   const authorization = request.get('authorization')
@@ -34,6 +35,17 @@ const userExtractor = async (req, res, next) => {
   }
 }
 
+const aiAnalysisLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, 
+  max: 2,                   
+  standardHeaders: true,    
+  legacyHeaders: false,
+  message: {
+    status: 429,
+    error: 'Too many analysis requests, please try again after 15 minutes.'
+  }
+})
+
 const errorHandler = (error, req, res, next) => {
   logger.error(error.message)
 
@@ -65,5 +77,6 @@ module.exports = {
   requestLogger,
   unknowEndpoint,
   errorHandler,
-  userExtractor
+  userExtractor,
+  aiAnalysisLimiter
 }
