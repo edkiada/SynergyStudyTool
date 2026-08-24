@@ -88,6 +88,15 @@ const getAiAnalysis = async (req, res, next) => {
       return isCreatedToday || isCompletedToday || isInProgress
     })
 
+    const sampledTasks = todayActiveTasks
+      .sort((a, b) => (b.priority === 'high' ? 1 : -1))
+      .slice(0, 20)
+      .map(t => ({
+        title: (t.title || '').slice(0, 100), // 單條標題硬截斷至100字
+        priority: t.priority,
+        status: t.status
+      }))
+    
     const summaryData = {
       metrics: {
         totalTaskCount: allTasks.length,
@@ -99,11 +108,7 @@ const getAiAnalysis = async (req, res, next) => {
         focusSessionCountToday: todayFocusSessions.length,
         noteCount: taskNotes.length
       },
-      todayTasks: todayActiveTasks.map(task => ({
-        title: task.title,
-        priority: task.priority,
-        status: task.status
-      })),
+      sampledTasks,
       todayFocusSessions: todayFocusSessions.map(session => ({
         durationMinutes: Math.round((session.duration || 0) / 60)
       }))
@@ -125,6 +130,10 @@ const getAiAnalysis = async (req, res, next) => {
 
     const prompt = `
 你是一個學習與專注助理。請根據以下資料分析使用者今天的狀態，輸出繁體中文 JSON，不要輸出任何 markdown 或其他額外文字。
+
+【分析規則】
+1. 輸出的 JSON 中，metrics 物件內的數值必須嚴格對應輸入資料的 "metrics" 欄位（全量統計），請勿以抽樣清單的長度計算。
+2. "todayTasks" 為今日最具代表性的重點任務抽樣，請根據這些任務的語意與優先級產出 wins, risks 與 suggestions。
 
 JSON schema:
 {
