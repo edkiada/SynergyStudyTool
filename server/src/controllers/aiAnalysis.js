@@ -2,6 +2,7 @@ const Task = require('../models/task')
 const FocusSession = require('../models/focusSession')
 const Note = require('../models/note')
 const config = require('../config/env')
+const { sanitizePiiText } = require('../utils/piiSanitizer')
 
 const getTodayRange = () => {
   const start = new Date()
@@ -91,11 +92,15 @@ const getAiAnalysis = async (req, res, next) => {
     const sampledTasks = todayActiveTasks
       .sort((a, b) => (b.priority === 'high' ? 1 : -1))
       .slice(0, 20)
-      .map(t => ({
-        title: (t.title || '').slice(0, 100), // 單條標題硬截斷至100字
-        priority: t.priority,
-        status: t.status
-      }))
+      .map(t => {
+        const rawTitle = (t.title || '').slice(0, 100)
+        const safeTitle = sanitizePiiText(rawTitle)
+        return {
+          title: safeTitle,
+          priority: t.priority,
+          status: t.status
+        }        
+      })
     
     const summaryData = {
       metrics: {
@@ -156,6 +161,10 @@ ${JSON.stringify(summaryData, null, 2)}
 
     const modelName = '@cf/meta/llama-3.1-8b-instruct'
     const cfUrl = `https://api.cloudflare.com/client/v4/accounts/${config.CLOUDFLARE_ACCOUNT_ID}/ai/run/${modelName}`
+    
+    console.log('================ [ OUTBOUND AI PAYLOAD INSPECTION ] ================')
+    console.log(prompt)
+    console.log('====================================================================')
 
     const cfResponse = await fetch(cfUrl, {
       method: 'POST',
