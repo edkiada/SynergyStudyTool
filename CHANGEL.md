@@ -2,6 +2,9 @@
 
 所有對 SynergyStudyTool 專案的顯著更動將紀錄於此。
 本專案遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 規範。
+## [0.1.03] -2026-8-30
+- sensitive information filter `server/src/utils/piiSanitizer.js`, `server/src/controllers/aiAnalysis.js` 
+
 ## [0.1.02] -2026-8-24
 ### feat
 - LLM_API request limit `server/src/middleware.js`, `server/src/routues/aiAnalysisRouter.js`
